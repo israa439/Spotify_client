@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap");
+/*WILD CARD*/
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Ubuntu Sans", sans-serif;
+  color: white;
+}
+/* BODY */
+body {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  overflow: hidden;
+  padding-top: 7px;
+  padding-right: 7px;
+}
+/* SIDE BAR */
+.side-bar {
+  min-width: 70px;
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.side-bar.resizing {
+  cursor: ew-resize;
+  border-right: 2px solid white;
+}
+/* UPPER SIDE BAR */
+.upper-side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 20px;
+  padding: 10px;
+  height: 25%;
+  background-color: rgba(151, 134, 134, 0.187);
+  margin: 0px 5px;
+  border-radius: 10px;
+ 
+}
+.lower-side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 10px;
+  height: 75%;
+  background-color: rgba(151, 134, 134, 0.187);
+  margin: 0px 5px 10px 5px;
+  border-radius: 10px;
+}
+.logo {
+
+  display: flex;
+  gap: 3px;
+  height: 30px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.fa-spotify {
+  font-size: 30px;
+}
+.saving-songs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.icon-subtitles {
+  display: flex;
+  gap: 30px;
+  height: 30px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.icon-subtitles:hover span {
+  color: rgb(248, 245, 245);
+}
+.icon-subtitles i {
+  font-size: 25px;
+}
+.icon-subtitles span {
+  font-size: 20px;
+  color: rgb(159, 158, 155);
+}

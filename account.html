@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accounts</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fspotify-favicon.png?alt=media&token=0159c800-548a-4fff-8e6e-df2fb2f67dba"
+    />
+    <script
+      src="https://kit.fontawesome.com/094df3e6f8.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="styles/account.css" />
+  </head>
+
+  <body>
+    <div id="particles-js"></div>
+    <div id="verifier-container">
+      <div id="verifier-box">
+        <i
+          id="verifier-close"
+          class="fa-regular fa-circle-xmark fa-xl"
+          style="color: #05811e"
+        ></i>
+        <p class="verifier-header">Enter verification code</p>
+        <input
+          type="text"
+          id="verifier-input"
+          placeholder="verification code"
+          required
+        />
+        <p class="verifier-warning">
+          The verification code will expire after <span id="timer"></span>
+        </p>
+        <button id="verifier-btn">verify</button>
+
+        <span class="verifier-error" id="verifier-error"></span>
+      </div>
+    </div>
+    <header>
+      <div class="logo_and_image">
+        <i class="fa-brands fa-spotify"></i>
+        <p class="logo-name">Spotify</p>
+      </div>
+    </header>
+    <main>
+      <div class="wrapper" id="wrapper">
+        <div class="sign-in-card">
+          <form class="sign-in-form" id="sign-in-Form">
+            <span class="sign-in-header">Sign in</span>
+            <input
+              type="text"
+              id="sign-in-email"
+              name="email"
+              placeholder="email"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              id="sign-in-password"
+              required
+            />
+            <button type="submit" id="sign-in-btn">sign in</button>
+            <span class="sign-in-error" id="sign-in-error"></span>
+            <span class="sign-in-footer"
+              >don't have an account,
+              <span id="flipBack" class="flip-back">create account</span></span
+            >
+          </form>
+        </div>
+        <div class="sign-up-card">
+          <form class="sign-up-form" id="sign-up-Form">
+            <span class="sign-up-header">Sign up</span>
+            <input
+              type="text"
+              name="username"
+              placeholder="username"
+              id="sign-up-username"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              id="sign-up-email"
+              required
+            />
+            <input
+              type="text"
+              name="full-name"
+              placeholder="Full Name"
+              id="sign-up-full-name"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="password"
+              id="sign-up-password"
+              required
+            />
+
+            <button type="submit" id="sign-up-btn">sign up</button>
+            <span class="sign-up-error" id="sign-up-error"></span>
+            <span class="sign-up-footer"
+              >already have an account,
+              <span id="flipFront" class="flip-front">log in</span></span
+            >
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <hr />
+      <a href="https://github.com/israa439" target="_blank"
+        ><img
+          class="github-icon"
+          src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fgithub.png?alt=media&token=bf012543-05f8-44e2-aa32-a629a8622624"
+      /></a>
+      <a href="https://linkedin.com/in/asa-kanaan" target="_blank"
+        ><img
+          class="linkedin-icon"
+          src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Flinkedin.png?alt=media&token=aa1938fa-c3e9-473d-a8d7-4e51149aa4a1"
+      /></a>
+    </footer>
+
+    <script src="src/background/particles.js"></script>
+    <script src="src/background/bg.js"></script>
+    <script src="src/account.js"></script>
+  </body>
+</html>
