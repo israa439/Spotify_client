@@ -41,7 +41,7 @@ signinForm.addEventListener("submit", async function (event) {
       signinspan.innerHTML = "your email or password is incorrect";
       return;
     }
-    window.location.href = "home.html";
+    window.location.href = "index.html";
   } catch (error) {
     alert("Error signing in. Please try again.");
   }
@@ -129,7 +129,7 @@ signupForm.addEventListener("submit", async function (event) {
           if (!signupResponse.ok) {
             alert("Error signing up. Please try again.");
           }
-          window.location.href = "home.html";
+          window.location.href = "index.html";
         }
       });
   } catch (error) {
