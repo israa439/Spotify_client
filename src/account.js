@@ -23,14 +23,17 @@ signinForm.addEventListener("submit", async function (event) {
   };
   try {
     signinspan.innerHTML = " ";
-   
-    const response = await fetch("http://localhost:5000/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+
+    const response = await fetch(
+      "https://spotify-server-76gp.onrender.com/signin",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
     let data = await response.text();
     console.log(data);
     if (response.status === 400) {
@@ -63,13 +66,16 @@ signupForm.addEventListener("submit", async function (event) {
   }
   try {
     signupspan.innerHTML = "";
-    let sendEmailresponse = await fetch("http://localhost:5000/sendEmail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    let sendEmailresponse = await fetch(
+      "https://spotify-server-76gp.onrender.com/sendEmail",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
     if (sendEmailresponse.status === 400) {
       signupspan.innerHTML = "Email already in use";
       return;
@@ -93,13 +99,16 @@ signupForm.addEventListener("submit", async function (event) {
           email: document.getElementById("sign-up-email").value,
           code: document.getElementById("verifier-input").value,
         };
-        let verifyResponse = await fetch("http://localhost:5000/verifyEmail", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(Data),
-        });
+        let verifyResponse = await fetch(
+          "https://spotify-server-76gp.onrender.com/verifyEmail",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(Data),
+          }
+        );
         if (verifyResponse.status === 500) {
           alert("Error verifying code. Please try again.");
           return;
@@ -119,13 +128,16 @@ signupForm.addEventListener("submit", async function (event) {
         if (verifyResponse.ok) {
           document.getElementById("verifier-error").style.color = "green";
           document.getElementById("verifier-error").innerHTML = "Code Verified";
-          const signupResponse = await fetch("http://localhost:5000/signup", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          });
+          const signupResponse = await fetch(
+            "https://spotify-server-76gp.onrender.com/signup",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            }
+          );
           if (!signupResponse.ok) {
             alert("Error signing up. Please try again.");
           }
