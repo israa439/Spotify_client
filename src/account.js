@@ -30,8 +30,10 @@ signinForm.addEventListener("submit", async function (event) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          credentials: "include",
         },
         body: JSON.stringify(formData),
+        credentials: "include",
       }
     );
     let data = await response.text();
@@ -74,6 +76,7 @@ signupForm.addEventListener("submit", async function (event) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        credentials: "include",
       }
     );
     if (sendEmailresponse.status === 400) {
@@ -107,6 +110,7 @@ signupForm.addEventListener("submit", async function (event) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(Data),
+            credentials: "include",
           }
         );
         if (verifyResponse.status === 500) {
@@ -136,6 +140,7 @@ signupForm.addEventListener("submit", async function (event) {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(formData),
+              credentials: "include",
             }
           );
           if (!signupResponse.ok) {
