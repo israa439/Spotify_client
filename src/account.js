@@ -25,7 +25,7 @@ signinForm.addEventListener("submit", async function (event) {
     signinspan.innerHTML = " ";
 
     const response = await fetch(
-      "https://spotify-server-76gp.onrender.com/signin",
+      "https://spotify-music-app.azurewebsites.net/signin",
       {
         method: "POST",
         headers: {
@@ -69,7 +69,7 @@ signupForm.addEventListener("submit", async function (event) {
   try {
     signupspan.innerHTML = "";
     let sendEmailresponse = await fetch(
-      "https://spotify-server-76gp.onrender.com/sendEmail",
+      "https://spotify-music-app.azurewebsites.net/sendEmail",
       {
         method: "POST",
         headers: {
@@ -103,7 +103,7 @@ signupForm.addEventListener("submit", async function (event) {
           code: document.getElementById("verifier-input").value,
         };
         let verifyResponse = await fetch(
-          "https://spotify-server-76gp.onrender.com/verifyEmail",
+          "https://spotify-music-app.azurewebsites.net/verifyEmail",
           {
             method: "POST",
             headers: {
@@ -133,7 +133,7 @@ signupForm.addEventListener("submit", async function (event) {
           document.getElementById("verifier-error").style.color = "green";
           document.getElementById("verifier-error").innerHTML = "Code Verified";
           const signupResponse = await fetch(
-            "https://spotify-server-76gp.onrender.com/signup",
+            "https://spotify-music-app.azurewebsites.net/signup",
             {
               method: "POST",
               headers: {

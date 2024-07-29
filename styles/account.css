@@ -286,6 +286,7 @@ footer hr {
 }
 
 /*MEDIA QUERIES*/
+/*  TABLETS AND LARGER SMART PHONES  */
 @media (max-width: 768px) {
   .form-container {
     width: 100%;
@@ -336,6 +337,7 @@ footer hr {
     font-size: 30px;
   }
 }
+/* SMALLER SMART PHONES  */
 @media (max-width: 450px) {
   header {
     padding: 10px 10px;
