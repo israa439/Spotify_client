@@ -1,83 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fspotify-favicon.png?alt=media&token=0159c800-548a-4fff-8e6e-df2fb2f67dba"
+    />
+    <link rel="stylesheet" href="styles/shared/sidebar.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/shared/header.css" />
+    <script
+      src="https://kit.fontawesome.com/094df3e6f8.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home</title>
-  <link rel="icon" type="image/x-icon"
-    href="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fspotify-favicon.png?alt=media&token=0159c800-548a-4fff-8e6e-df2fb2f67dba" />
-  <link rel="stylesheet" href="styles/shared/sidebar.css" />
-  <link rel="stylesheet" href="styles/home.css" />
-  <script src="https://kit.fontawesome.com/094df3e6f8.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <side class="side-bar" id="sideBar"></side>
-  <main class="home">
-    <header class="home-header">
-      <div class="create-account" id="createAccount">
-        <a href="account.html"><button class="sign-up">Sign Up</button></a>
-        <a href="account.html"><button class="log-in">Log In</button></a>
-      </div>
-      <div class="user-info" id="userInfo">asa</div>
-    </header>
-    <main class="home-main" id="homeMain">
-      <h2 class="albums-header">Popular Artists</h2>
-      <div class="albums-wrapper" id="Albums-wrapper">
-        <i class="fa-solid fa-arrow-left" id="leftArrow"></i>
-        <i class="fa-solid fa-arrow-right" id="rightArrow"></i>
-        <div class="albums" id="AlbumsContainer"></div>
-      </div>
-      <h2 class="podcast-header">Popular Podcasts</h2>
-      <div class="podcast-wrapper" id="podcast-wrapper">
-        <i class="fa-solid fa-arrow-left" id="leftArrow"></i>
-        <i class="fa-solid fa-arrow-right" id="rightArrow"></i>
-        <div class="podcasts" id="podcastsContainer"></div>
-      </div>
-          <!-- <footer class="home-footer">
-        <div class="footer-links">
-          <a href="https://www.spotify.com/us/legal/end-user-agreement/"
-            >Legal</a
-          >
-          <a href="https://www.spotify.com/us/legal/privacy-policy/"
-            >Privacy Center</a
-          >
-          <a href="https://www.spotify.com/us/legal/privacy-policy/#s13"
-            >Privacy Policy</a
-          >
-          <a href="https://www.spotify.com/us/legal/privacy-policy/#s13"
-            >Cookies</a
-          >
-          <a href="https://www.spotify.com/us/legal/privacy-policy/#s13"
-            >About Ads</a
-          >
+  <body>
+    <side class="side-bar" id="sideBar"></side>
+    <main class="home">
+      <header class="home-header" id="homeHeader"></header>
+      <main class="home-main" id="homeMain">
+        <h2 class="albums-header">Popular Artists</h2>
+        <div class="albums-wrapper" id="Albums-wrapper">
+          <i class="fa-solid fa-arrow-left leftArrow"></i>
+          <i class="fa-solid fa-arrow-right rightArrow"></i>
+          <div class="albums" id="AlbumsContainer"></div>
         </div>
-        <div class="footer-links">
-          <a href="https://www.spotify.com/us/legal/privacy-policy/#s13"
-            >Additional CA Privacy Disclosures</a
-          >
-          <a href="https://www.spotify.com/us/legal/privacy-policy/#s13"
-            >Do Not Sell My Personal Information</a
-          >
+        <h2 class="podcast-header">Popular Podcasts</h2>
+        <div class="podcast-wrapper" id="podcast-wrapper">
+          <i class="fa-solid fa-arrow-left leftArrow"></i>
+          <i class="fa-solid fa-arrow-right rightArrow"></i>
+          <div class="podcasts" id="podcastsContainer"></div>
         </div>
-        <div class="footer-links">
-          <a href="https://www.spotify.com/us/legal/privacy-policy/#s13"
-            >Sitemap</a
-          >
-          <a href="https://www.spotify.com/us/legal/privacy-policy/#s13"
-            >© 2021 Spotify AB</a
-          >
-        </div>
-      </footer> -->
+        <div class="space-div"></div>
+        <footer class="home-footer">
+          <a href="https://github.com/israa439"
+            ><img
+              src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fgithub.png?alt=media&token=bf012543-05f8-44e2-aa32-a629a8622624"
+          /></a>
+          <a href="https://www.linkedin.com/in/asa-kanaan-0ba825280/"
+            ><img
+              src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Flinkedin.png?alt=media&token=aa1938fa-c3e9-473d-a8d7-4e51149aa4a1"
+          /></a>
+        </footer>
+      </main>
     </main>
-
-  </main>
-  <footer class="footer-bar" id="footerBar">
-
-  </footer>
-  <script src="src/sidebar.js"></script>
-  <script src="src/home.js"></script>
-</body>
-
+    <footer class="footer-bar" id="footerBar"></footer>
+    <script src="src/shared/sidebar.js"></script>
+    <script src="src/home.js"></script>
+    <script src="src/shared/header.js"></script>
+  </body>
 </html>
