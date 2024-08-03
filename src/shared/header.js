@@ -5,7 +5,6 @@ let headerHTML = `
         </div>
         <div class="user-info" id="userInfo">asa</div>
 `;
-
 let header = document.getElementById("homeHeader");
 header.innerHTML = headerHTML;
 let createAccountContainer = document.getElementById("createAccount");
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     );
     let data = await response.text();
-    console.log(data)
     if (response.status === 400) {
       createAccountContainer.classList.add("active");
       userInfoAccount.classList.remove("active");
