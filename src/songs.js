@@ -1,6 +1,5 @@
-let songs;
 let AlbumId = sessionStorage.getItem("albumId");
-document.addEventListener("DOMContentLoaded", async () => {
+async function getSongs() {
   try {
     const response = await fetch(
       "https://spotify-web-app.azurewebsites.net/getSongs/${AlbumId}",
@@ -16,8 +15,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (err) {
     console.log(err);
   }
-});
-
+}
+let songs = await getSongs();
 let containerHTML = `
 <div class="image-container">
     <img src="${songs[0].song_image}"/>

@@ -1,16 +1,12 @@
-let songs;
-let podcasts;
 let albumsContainer = document.getElementById("AlbumsContainer");
 let podcastContainer = document.getElementById("podcastsContainer");
 let leftArrow = document.querySelectorAll(".leftArrow");
 let rightArrow = document.querySelectorAll(".rightArrow");
 let AlbumsWrapper = document.getElementById("Albums-wrapper");
 let podcastsWrapper = document.getElementById("podcast-wrapper");
-
 let AlbumscrollAmount = 0;
 let podcastscrollAmount = 0;
-
-document.addEventListener("DOMContentLoaded", async () => {
+async function getAlbums() {
   try {
     const response = await fetch(
       "https://spotify-web-app.azurewebsites.net/getAlbums",
@@ -22,12 +18,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         credentials: "include",
       }
     );
-    songs = await response.json();
+    return await response.json();
   } catch (err) {
     console.log(err);
   }
-});
-document.addEventListener("DOMContentLoaded", async () => {
+}
+async function getPodcasts() {
   try {
     const response = await fetch(
       "https://spotify-web-app.azurewebsites.net/getPodcasts",
@@ -39,17 +35,18 @@ document.addEventListener("DOMContentLoaded", async () => {
         credentials: "include",
       }
     );
-    podcasts = await response.json();
+    return await response.json();
   } catch (err) {
     console.log(err);
   }
-});
-
+}
+let songs = await getAlbums();
+let podcasts = await getPodcasts();
 for (let i = 0; i < songs.length; i++) {
-  createsongs(songs[i]);
+  createAlbums(songs[i]);
 }
 for (let i = 0; i < songs.length; i++) {
-  createsongs(songs[i]);
+  createAlbums(songs[i]);
 }
 for (let i = 0; i < podcasts.length; i++) {
   createPodcasts(podcasts[i]);
@@ -57,8 +54,7 @@ for (let i = 0; i < podcasts.length; i++) {
 for (let i = 0; i < podcasts.length; i++) {
   createPodcasts(podcasts[i]);
 }
-
-async function createsongs(album) {
+async function createAlbums(album) {
   albumsContainer.innerHTML += `
   <div class="album-card card" data-album-id="${album.album_id}" >
       <div class="album-card-image">
