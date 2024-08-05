@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           credentials: "include",
         }
       );
-      songs = await response.json();
+      return await response.json();
     } catch (err) {
       console.log(err);
     }
