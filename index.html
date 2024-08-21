@@ -7,8 +7,9 @@
     <link
       rel="icon"
       type="image/x-icon"
-      href="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fspotify-favicon.png?alt=media&token=0159c800-548a-4fff-8e6e-df2fb2f67dba"
+      href="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fspotify-logo.png?alt=media&token=fe6ab580-f0b6-46b7-81f7-991d9a8c2e96"
     />
+    <link rel="stylesheet" href="styles/shared/audio-player.css" />
     <link rel="stylesheet" href="styles/shared/sidebar.css" />
     <link rel="stylesheet" href="styles/home.css" />
     <link rel="stylesheet" href="styles/shared/header.css" />
@@ -18,39 +19,45 @@
     ></script>
   </head>
 
-  <body>
-    <side class="side-bar" id="sideBar"></side>
-    <main class="home">
-      <header class="home-header" id="homeHeader"></header>
-      <main class="home-main" id="homeMain">
-        <h2 class="albums-header">Popular Artists</h2>
-        <div class="albums-wrapper" id="Albums-wrapper">
-          <i class="fa-solid fa-arrow-left leftArrow"></i>
-          <i class="fa-solid fa-arrow-right rightArrow"></i>
-          <div class="albums" id="AlbumsContainer"></div>
-        </div>
-        <h2 class="podcast-header">Popular Podcasts</h2>
-        <div class="podcast-wrapper" id="podcast-wrapper">
-          <i class="fa-solid fa-arrow-left leftArrow"></i>
-          <i class="fa-solid fa-arrow-right rightArrow"></i>
-          <div class="podcasts" id="podcastsContainer"></div>
-        </div>
-        <div class="space-div"></div>
-        <footer class="home-footer">
-          <a href="https://github.com/israa439"
-            ><img
-              src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fgithub.png?alt=media&token=bf012543-05f8-44e2-aa32-a629a8622624"
-          /></a>
-          <a href="https://www.linkedin.com/in/asa-kanaan-0ba825280/"
-            ><img
-              src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Flinkedin.png?alt=media&token=aa1938fa-c3e9-473d-a8d7-4e51149aa4a1"
-          /></a>
-        </footer>
+  <body id="body">
+    <div class="main-wrapper">
+      <side class="side-bar" id="sideBar"></side>
+      <main class="home" id="home">
+        <header class="home-header" id="homeHeader"></header>
+        <main class="home-main" id="homeMain">
+          <h2 class="albums-header">Popular Artists</h2>
+          <div class="albums-wrapper" id="Albums-wrapper">
+            <i class="fa-solid fa-arrow-left leftArrow"></i>
+            <i class="fa-solid fa-arrow-right rightArrow"></i>
+            <div class="albums" id="AlbumsContainer"></div>
+          </div>
+          <h2 class="podcast-header">Popular Podcasts</h2>
+          <div class="podcast-wrapper" id="podcast-wrapper">
+            <i class="fa-solid fa-arrow-left leftArrow"></i>
+            <i class="fa-solid fa-arrow-right rightArrow"></i>
+            <div class="podcasts" id="podcastsContainer"></div>
+          </div>
+          <div class="space-div"></div>
+          <footer class="home-footer">
+            <a href="https://github.com/israa439"
+              ><img
+                src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fgithub.png?alt=media&token=bf012543-05f8-44e2-aa32-a629a8622624"
+            /></a>
+            <a href="https://www.linkedin.com/in/asa-kanaan-0ba825280/"
+              ><img
+                src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Flinkedin.png?alt=media&token=aa1938fa-c3e9-473d-a8d7-4e51149aa4a1"
+            /></a>
+          </footer>
+        </main>
       </main>
-    </main>
+    </div>
+    <footer class="audio-player-container" id="audioPlayerContainer"></footer>
     <footer class="footer-bar" id="footerBar"></footer>
-    <script src="src/shared/sidebar.js"></script>
-    <script src="src/home.js"></script>
-    <script src="src/shared/header.js"></script>
+    <script src="scripts/shared/audio-player.js" type="module"></script>
+    <script src="scripts/shared/currentAlbum.js" type="module"></script>
+    <script src="scripts/home.js" type="module"></script>
+    <script src="scripts/shared/sidebar.js"></script>
+    <script src="scripts/shared/header.js"></script>
+
   </body>
 </html>

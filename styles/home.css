@@ -59,7 +59,7 @@
   background-color: rgba(151, 134, 134, 0.187);
   border-radius: 10px;
 }
-.fa-circle-play {
+.songs-player {
   font-size: 40px;
   position: absolute;
   color: green;

@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Songs</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fspotify-logo.png?alt=media&token=fe6ab580-f0b6-46b7-81f7-991d9a8c2e96"
+    />
+    <link rel="stylesheet" href="styles/shared/audio-player.css" />
     <link rel="stylesheet" href="styles/shared/sidebar.css" />
     <link rel="stylesheet" href="styles/shared/header.css" />
-     <script
+    <link rel="stylesheet" href="styles/songs.css" />
+    <script
       src="https://kit.fontawesome.com/094df3e6f8.js"
       crossorigin="anonymous"
     ></script>
-</head>
+  </head>
 
-<body>
-    <side class="side-bar" id="sideBar"></side>
-    <main class="home">
+  <body id="body">
+    <div class="main-wrapper">
+      <side class="side-bar" id="sideBar"></side>
+      <main class="home" id="home">
         <header class="home-header" id="homeHeader"></header>
-        <main class="home-main" id="homeMain">
-      
-        </main>
-    </main>
+        <main class="home-main" id="homeMain"></main>
+      </main>
+    </div>
+    <footer class="audio-player-container" id="audioPlayerContainer"></footer>
     <footer class="footer-bar" id="footerBar"></footer>
-    <script src="src/shared/sidebar.js"></script>
-    <script src="src/shared/header.js"></script>
-    <script src="src/songs.js"></script>
-</body>
-
+    <script src="scripts/shared/audio-player.js" type="module"></script>
+    <script src="scripts/shared/currentAlbum.js" type="module"></script>
+    <script src="scripts/songs.js" type="module"></script>
+    <script src="scripts/shared/sidebar.js"></script>
+    <script src="scripts/shared/header.js"></script>
+  </body>
 </html>
+
