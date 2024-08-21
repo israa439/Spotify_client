@@ -1,13 +1,17 @@
+// IMPORTS
 import { createAudioPlayer } from "./shared/audio-player.js";
-
+// WHOLE FUNCTIONALITY OF THE HOME PAGE
 document.addEventListener("DOMContentLoaded", async () => {
+  // CREATING THE ELEMENTS
   let albumsContainer = document.getElementById("AlbumsContainer");
   let podcastContainer = document.getElementById("podcastsContainer");
   let AlbumsWrapper = document.getElementById("Albums-wrapper");
   let podcastsWrapper = document.getElementById("podcast-wrapper");
   let AlbumscrollAmount = 0;
   let podcastscrollAmount = 0;
-
+  let touchStartX = 0;
+  let touchEndX = 0;
+  // FUNCTION TO GET THE ALBUMS FROM BACKEND
   // async function getAlbums() {
   //   try {
   //     const response = await fetch(
@@ -25,6 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   //     console.log(err);
   //   }
   // }
+  // FUNCTION TO GET THE PODCASTS FROM BACKEND
   // async function getPodcasts() {
   //   try {
   //     const response = await fetch(
@@ -480,7 +485,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         "https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fradio-survivor%20.png?alt=media&token=f9c26284-b2e5-4fca-a199-169ef2d3b7fd",
     },
   ];
-
+  // CALLING THE FUNCTION TO CREATE THE ALBUMS AND PODCASTS
   for (let i = 0; i < Albums.length; i++) {
     createAlbums(Albums[i]);
   }
@@ -493,6 +498,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   for (let i = 0; i < podcasts.length; i++) {
     createPodcasts(podcasts[i]);
   }
+  // FUNCTION TO CREATE THE ALBUMS
   async function createAlbums(album) {
     albumsContainer.innerHTML += `
   <div class="album-card card" data-album-id="${album.album_id}" >
@@ -504,6 +510,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   </div>
   `;
   }
+  // FUNCTION TO CREATE THE PODCASTS
   async function createPodcasts(podcast) {
     podcastContainer.innerHTML += `
   <div class="podcast-card card"  data-podcast-id="${podcast.podcast_id}">
@@ -515,23 +522,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   </div>
   `;
   }
-
+  // HANDLING ALL CLICKS ON ALBUMS
   AlbumsWrapper.addEventListener("click", (event) => {
     let cardWidth = albumsContainer.querySelector(".album-card").offsetWidth;
+    // CHECKING IF THE CLICKED ELEMENT IS LEFT ARROW
     if (event.target.classList.contains("leftArrow")) {
       AlbumscrollAmount = moveLeft(
         cardWidth,
         AlbumscrollAmount,
         albumsContainer
       );
-    } else if (event.target.classList.contains("rightArrow")) {
+    }
+    // CHECKING IF THE CLICKED ELEMENT IS RIGHT ARROW
+    else if (event.target.classList.contains("rightArrow")) {
       AlbumscrollAmount = moveRight(
         cardWidth,
         AlbumscrollAmount,
         albumsContainer,
         AlbumsWrapper
       );
-    } else if (event.target.classList.contains("album-image")) {
+    }
+    // CHECKING IF THE CLICKED ELEMENT IS ALBUM IMAGE
+    else if (event.target.classList.contains("album-image")) {
       let albumCard = event.target.closest(".album-card");
       let index = Array.from(albumsContainer.children).indexOf(albumCard);
       if (index > 5) {
@@ -541,7 +553,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       localStorage.setItem("albumId", albumId);
       localStorage.setItem("artistName", Albums[index].artist_name);
       window.location.href = "songs.html";
-    } else if (event.target.classList.contains("songs-player")) {
+    }
+    // CHECKING IF THE CLICKED ELEMENT IS PLAY ICON
+    else if (event.target.classList.contains("songs-player")) {
       let albumCard = event.target.closest(".album-card");
       let index = Array.from(albumsContainer.children).indexOf(albumCard);
       if (index > 5) {
@@ -557,6 +571,35 @@ document.addEventListener("DOMContentLoaded", async () => {
       createAudioPlayer();
     }
   });
+  // HANDLING ALBUMS WRAPPER TOUCH EVENTS
+  AlbumsWrapper.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0].screenX;
+  });
+  AlbumsWrapper.addEventListener("touchend", (event) => {
+    touchEndX = event.changedTouches[0].screenX;
+    handleSwipe();
+  });
+  // HANDLING SWIPES ON ALBUMS
+  function handleSwipe() {
+    let cardWidth = albumsContainer.querySelector(".album-card").offsetWidth;
+    // SWIPE LEFT (NEXT ALBUMS)
+    if (touchEndX < touchStartX) {
+      AlbumscrollAmount = moveRight(
+        cardWidth,
+        AlbumscrollAmount,
+        albumsContainer,
+        AlbumsWrapper
+      );
+    }
+    // SWIPE RIGHT (PREVIOUS ALBUMS)
+    else if (touchEndX > touchStartX) {
+      AlbumscrollAmount = moveLeft(
+        cardWidth,
+        AlbumscrollAmount,
+        albumsContainer
+      );
+    }
+  }
   podcastsWrapper.addEventListener("click", (event) => {
     let cardWidth = podcastContainer.querySelector(".podcast-card").offsetWidth;
     if (event.target.classList.contains("leftArrow")) {
@@ -574,10 +617,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
     }
   });
-  AlbumsWrapper.addEventListener("mouseover", playMusic);
-  podcastsWrapper.addEventListener("mouseover", playMusic);
+  AlbumsWrapper.addEventListener("mouseover", playMusicIcon);
+  podcastsWrapper.addEventListener("mouseover", playMusicIcon);
 
-  async function playMusic() {
+  async function playMusicIcon() {
     const cards = document.querySelectorAll(".card");
     cards.forEach((card) => {
       const playIcon = card.querySelector(".fa-circle-play");
