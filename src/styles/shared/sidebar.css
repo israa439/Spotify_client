@@ -1,0 +1,107 @@
+
+/* SIDE BAR */
+.side-bar {
+  min-width: 70px;
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.side-bar.resizing {
+  cursor: ew-resize;
+  border-right: 2px solid white;
+}
+/* UPPER SIDE BAR */
+.upper-side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 20px;
+  padding: 10px;
+  height: 25%;
+  background-color: rgba(151, 134, 134, 0.187);
+  margin: 0px 5px;
+  border-radius: 10px;
+}
+/* LOWER SIDE BAR */
+.lower-side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 10px;
+  height: 75%;
+  background-color: rgba(151, 134, 134, 0.187);
+  margin: 0px 5px 10px 5px;
+  border-radius: 10px;
+}
+/* SPOTIFY LOGO */
+.spotify-logo {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 3px;
+  height: 30px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.fa-spotify {
+  font-size: 30px;
+}
+/* PLAYLIST AND FAVORITE ICONS CONTAINER */
+.saving-songs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+/* CONTAINER OF THE ICONS */
+.icon-subtitles {
+  display: flex;
+  gap: 30px;
+  height: 30px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+/* HOVER:CONTAINER OF THE ICONS */
+.icon-subtitles:hover span {
+  color: rgb(248, 245, 245);
+}
+/* ICONS */
+.icon-subtitles i {
+  font-size: 25px;
+}
+.icon-subtitles a {
+  text-decoration: none;
+}
+/* SUBTITLE OF THE ICONS */
+.icon-subtitles span {
+  font-size: 20px;
+  color: rgb(159, 158, 155);
+}
+/* FOOTER BAR  */
+.footer-bar {
+  display: none;
+}
+
+/* MEDIA QUERIES */
+/*  PHONES AND LARGE TABLETS  */
+@media (max-width: 600px) {
+  .footer-bar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    background-color: transparent;
+    height: 40px;
+  }
+  .footer-bar i {
+    font-size: 25px;
+  }
+  .side-bar {
+    display: none;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+}

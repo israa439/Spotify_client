@@ -12,7 +12,7 @@ let userInfoAccount = document.getElementById("userInfo");
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const response = await fetch(
-      "https://spotify-music-app.azurewebsites.net/userInfo",
+      "https://spotify-web-app.azurewebsites.net/userInfo",
       {
         method: "GET",
         headers: {

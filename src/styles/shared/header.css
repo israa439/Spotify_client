@@ -1,0 +1,69 @@
+/* MAIN */
+.home {
+  flex: 1;
+  background-color: black;
+  overflow: hidden;
+  padding-right: 7px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+/* MAIN OF THE HOME  */
+.home-main {
+  margin-top: 10px;
+  overflow-y: auto;
+  width: 100%;
+  height: 90%;
+  padding: 30px 0px 20px 20px;
+  background-color: rgba(151, 134, 134, 0.094);
+  border-radius: 10px;
+}
+.home-main::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* HEADER OF THE HOME */
+.home-header {
+  display: flex;
+  justify-content: end;
+  background-color: rgba(151, 134, 134, 0.187);
+  width: 100%;
+  height: 10%;
+  border-radius: 10px;
+}
+/* CREATE ACCOUNT DIV  */
+.create-account {
+  display: none;
+}
+
+.create-account.active {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-right: 20px;
+}
+/* USER INFO CONTAINER */
+.user-info.active {
+  background-color: red;
+}
+.user-info {
+  display: none;
+}
+/* SIGN UP AND SIGN IN DIVS */
+.sign-up,
+.log-in {
+  background-color: rgb(254, 252, 252);
+  border-radius: 25px;
+  width: 100px;
+  height: 50px;
+  border: none;
+  color: rgb(54, 53, 53);
+  font-size: 15px;
+}
+.sign-up:hover,
+.log-in:hover {
+  cursor: pointer;
+  background-color: rgb(240, 238, 238);
+  width: 101px;
+  height: 51px;
+}
