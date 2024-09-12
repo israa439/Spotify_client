@@ -11,7 +11,6 @@ async function getSongs() {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
       }
     );
     return await response.json();

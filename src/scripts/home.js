@@ -50,7 +50,7 @@ async function homePage() {
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: "include",
+          // credentials: "include",
         }
       );
       return await response.json();
@@ -68,7 +68,7 @@ async function homePage() {
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: "include",
+          // credentials: "include",
         }
       );
       return await response.json();

@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
       }
     );
     let data = await response.text();
