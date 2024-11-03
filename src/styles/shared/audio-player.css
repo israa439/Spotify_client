@@ -36,7 +36,7 @@
 .previous-song i,
 .next-song i,
 .repeat-song i {
-  color: rgba(197, 192, 192, 0.731);
+  color: #fff;
 }
 
 /* CONTROL ICONS ON HOVER  */
@@ -50,7 +50,7 @@
 .play-music {
   visibility: visible;
   opacity: 1;
-  z-index: 100;
+  z-index: 10;
 }
 .play-music:hover,
 .pause-music:hover {
@@ -129,7 +129,9 @@
   box-shadow: 0 3px 10px rgba(100, 116, 139, 0.327);
   transition: all 0.3s ease;
 }
-
+.switch.not-Active::before {
+  cursor: not-allowed;
+}
 .switch:hover::before {
   box-shadow: 0 0 0px 8px rgba(0, 0, 0, 0.15);
 }
@@ -281,35 +283,45 @@
   cursor: pointer;
   gap: 10px;
 }
-.adding-features .feature:hover,
-.playlist-features .list:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+.adding-to-playlist:hover,
+.playlist-features > :first-child:hover {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
-
-.audio-details:hover ~ .adding-features,
-.playlist-features:hover ~ .adding-features,
-.adding-features:hover {
-  display: block;
+.adding-to-favorites:hover,
+.playlist-features > :last-child:hover {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
-
 /* PLAYLIST FEATURES */
 .playlist-features {
   position: absolute;
   width: 170px;
   background-color: rgba(61, 51, 51, 0.963);
-  top: -70px;
-  right: -300px;
+  top: -10px;
+  right: -100%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: start;
   display: none;
+  z-index: 10;
 }
 
-.playlist-features:hover {
+.audio-info-container .add-icon:hover ~ .adding-features,
+.audio-info-container .adding-features:hover,
+.audio-info-container
+  .adding-features
+  .adding-to-playlist:hover
+  ~ .playlist-features,
+.audio-info-container .adding-features .playlist-features:hover {
   display: block;
 }
+.adding-features .feature:hover,
+.playlist-features .list:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* EXIT AUDIO PLAYER  */
 .exit-audio-player {
   width: 5%;
@@ -328,7 +340,7 @@
     margin-bottom: 3px;
     background-color: rgba(61, 51, 51, 0.963);
   }
-  .audio-info-container{
+  .audio-info-container {
     display: none;
   }
 }

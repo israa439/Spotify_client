@@ -16,6 +16,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body id="body">
     <div class="main-wrapper">
       <side class="side-bar" id="sideBar">
@@ -29,24 +30,21 @@
           </div>
           <div class="icon-subtitles" id="searchContainer">
             <i class="fa-solid fa-search"></i>
-            <a><span>Search</span></a>
+            <span>Search</span>
           </div>
         </div>
-        <div class="lower-side-bar">
+        <div class="lower-side-bar" id="lower-side-bar">
           <div class="saving-songs">
             <div class="icon-subtitles" id="playListContainer">
-              <a href="list.html"><i class="fa-solid fa-list-ul"></i></a>
-              <a><span>Play List</span></a>
+              <i class="fa-solid fa-list-ul"></i>
+              <span>Play List</span>
             </div>
             <div class="icon-subtitles" id="favoritesContainer">
-              <a href="favorites.html"><i class="fa-solid fa-heart"></i></a>
-              <a><span>Favorites</span></a>
+              <i class="fa-solid fa-heart"></i>
+              <span>Favorites</span>
             </div>
           </div>
-          <div class="icon-subtitles" id="logoutContainer">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <a><span>Log Out</span></a>
-          </div>
+          <div class="icon-subtitles" id="logoutContainer"></div>
         </div>
       </side>
       <main class="home" id="home">
@@ -55,10 +53,77 @@
             <a href="account.html"><button class="sign-up">Sign Up</button></a>
             <a href="account.html"><button class="log-in">Log In</button></a>
           </div>
-          <div class="user-info" id="userInfo">asa</div>
+          <div class="user-info" id="userInfo"></div>
         </header>
-        <main class="home-main" id="homeMain"></main>
+        <main class="home-main" id="homeMain">
+          <div class="varied-main" id="variedMain"></div>
+
+          <footer class="footer">
+            <div class="footer-content">
+              <div class="footer-links-container" id="footer-Pursue">
+                <h3 class="footer-heading">Pursue</h3>
+                <span class="footer-text">info</span>
+                <span class="footer-text">Jobs</span>
+                <span class="footer-text">For the Record</span>
+              </div>
+              <div class="footer-links-container" id="footer-Community">
+                <h3 class="footer-heading">Community</h3>
+                <span class="footer-text">Services for artists</span>
+                <span class="footer-text">Developers</span>
+                <span class="footer-text">Advertising</span>
+                <span class="footer-text">Investors</span>
+                <span class="footer-text">Suppliers</span>
+              </div>
+              <div class="footer-links-container" id="footer-links">
+                <h3 class="footer-heading">Useful Links</h3>
+                <span class="footer-text">Support </span>
+                <span class="footer-text">Free Mobile App</span>
+              </div>
+              <div class="footer-links-container" id="footer-Subscriptions">
+                <h3 class="footer-heading">Spotify Subscriptions</h3>
+                <span class="footer-text">Services for artists</span>
+                <span class="footer-text">Developers</span>
+                <span class="footer-text">Advertising</span>
+                <span class="footer-text">Investors</span>
+                <span class="footer-text">Suppliers</span>
+              </div>
+            </div>
+            <div class="footer-logos">
+              <span class="instagram-logo"
+                ><i class="fa-brands fa-instagram"></i
+              ></span>
+              <span class="twitter-logo"
+                ><i class="fa-brands fa-twitter"></i
+              ></span>
+              <span class="facebook-logo"
+                ><i class="fa-brands fa-facebook"></i
+              ></span>
+            </div>
+          </footer>
+        </main>
       </main>
+    </div>
+    <div class="logout-modal" id="logoutModal">
+      <div class="logout-modal-content">
+        <div class="logout-modal-header">
+          <h3>Are you sure you want to log out?</h3>
+        </div>
+        <div class="logout-modal-body">
+          <button class="logout-yes" id="logout-yes">Yes</button>
+          <button class="logout-no" id="logout-no">No</button>
+        </div>
+      </div>
+    </div>
+    <div class="authenticate-modal" id="authModal">
+      <div class="auth-modal-content">
+        <div class="auth-modal-header">
+          <h3>You should log in to use this feature.</h3>
+        </div>
+        <div class="auth-modal-body">
+          <a href="account.html"><button class="auth-yes" id="auth-yes">Log in</button><a>
+          <button class="auth-no" id="auth-no">Cancel</button>
+        </div>
+      </div>
     </div>
     <footer class="audio-player-container" id="audioPlayerContainer">
       <audio id="audio" controls style="display: none"></audio>
@@ -69,22 +134,25 @@
         <div class="audio-details">
           <span class="Artist-name" id="Artist-name"></span>
           <span class="Song-name" id="current-song-name">Artist Name</span>
-          <img
-            class="add-icon"
-            src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fadd-icon.png?alt=media&token=30d583f5-8a50-4ca3-a1f5-d67dd062d106"
-          />
         </div>
-        <div class="playlist-features" id="playlist-features">
-          <div class="create-playlist list" id="create-playlist">
-            <i class="fa-solid fa-plus"></i>Create Playlist
-          </div>
-        </div>
+        <img
+          class="add-icon"
+          src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fadd-icon.png?alt=media&token=30d583f5-8a50-4ca3-a1f5-d67dd062d106"
+        />
+
         <div class="adding-features" id="adding-features">
           <div class="adding-to-playlist feature" id="add-to-playlist">
             <i class="fa-solid fa-list-ul"></i>Add To your list
           </div>
           <div class="adding-to-favorites feature" id="add-to-favorites">
             <i class="fa-regular fa-heart"></i>Add To Favorites
+          </div>
+          <div class="playlist-features" id="playlist-features">
+            <div class="create-playlist list" id="create-playlist">
+              <i class="fa-solid fa-plus"></i>Create Playlist
+            </div>
+            <div class="create-playlist list">asaz</div>
+            <div class="create-playlist list">asa</div>
           </div>
         </div>
       </div>
@@ -144,13 +212,6 @@
       <div class="exit-audio-player" id="exit-audio-player">
         <i class="fa-regular fa-circle-xmark"></i>
       </div>
-    </footer>
-    <footer class="footer-bar" id="footerBar">
-      <a href="index.html"><i class="fa-solid fa-house"></i></a>
-      <i class="fa-solid fa-search"></i>
-      <a href="list.html"><i class="fa-solid fa-list-ul"></i></a>
-      <a href="favorites.html"><i class="fa-solid fa-heart"></i></a>
-      <i class="fa-solid fa-right-from-bracket"></i>
     </footer>
 
     <script src="./scripts/audio-player.js" type="module"></script>

@@ -53,7 +53,7 @@ body {
 
 /*VERIFIER BOX*/
 #verifier-box {
-    position: relative;
+  position: relative;
   width: 300px;
   height: 220px;
   background: rgba(0, 0, 0, 0.737);
@@ -64,7 +64,7 @@ body {
   align-items: center;
 }
 /*VERIFIER CLOSE ICON*/
-.fa-circle-xmark{
+.fa-circle-xmark {
   position: absolute;
   top: 20px;
   right: 7px;
@@ -89,14 +89,13 @@ body {
   background-color: transparent;
 }
 /*VERIFIER WARNING*/
-.verifier-warning{
+.verifier-warning {
   margin-bottom: 10px;
   font-size: 13.5px;
   font-weight: 400;
-
 }
 /* VERIFIER BUTTON */
-#verifier-btn{
+#verifier-btn {
   width: 30%;
   padding: 4px;
   border: none;
@@ -107,10 +106,9 @@ body {
   cursor: pointer;
   margin-bottom: 10px;
   margin-top: 10px;
-
 }
 /* VERIFIER ERROR */
-.verifier-error{
+.verifier-error {
   color: red;
   font-size: 15px;
   font-weight: 400;
@@ -265,6 +263,7 @@ footer {
   color: rgba(240, 248, 255, 0.386);
   width: 100%;
   padding-top: 3px;
+  margin-top: 10px;
 }
 
 footer img {
@@ -282,7 +281,7 @@ footer .linkedin-icon {
 
 footer hr {
   width: 60%;
-  margin: 0px auto;
+  margin: 10px auto;
 }
 
 /*MEDIA QUERIES*/

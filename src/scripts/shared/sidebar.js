@@ -1,9 +1,9 @@
-
 let logoutContainer = document.getElementById("logoutContainer");
+let logoutModal = document.getElementById("logoutModal");
+let logoutNo = document.getElementById("logout-no");
+let logoutYes = document.getElementById("logout-yes");
 let sideBar = document.getElementById("sideBar");
 let footer = document.getElementById("footerBar");
-
-
 
 let isResizing = false;
 let startX = 0;
@@ -17,7 +17,7 @@ function resizeSidebar(e) {
     newWidth = 70;
   } else if (newWidth > 70 && newWidth < 170 && sidebarWidth === 70) {
     newWidth = 170;
-  }else if(newWidth>=350){
+  } else if (newWidth >= 350) {
     newWidth = 350;
   }
   sideBar.style.width = `${newWidth}px`;
@@ -47,4 +47,28 @@ document.addEventListener("mousemove", resizeSidebar);
 sideBar.addEventListener("mouseup", () => {
   isResizing = false;
   sideBar.classList.remove("resizing");
+});
+
+logoutContainer.addEventListener("click", async () => {
+  try {
+    
+    logoutModal.style.display = "flex";
+    logoutNo.addEventListener("click", () => {
+      logoutModal.style.display = "none";
+    });
+    logoutYes.addEventListener("click", async () => {
+      const response = fetch("http://localhost:5000/logout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      let data = await response;
+      console.log(data);
+      location.reload();
+    });
+  } catch (err) {
+    console.error(err);
+  }
 });

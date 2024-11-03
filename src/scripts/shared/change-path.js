@@ -1,7 +1,9 @@
 import { homePage } from "../home.js";
 import { songsPage } from "../songs.js";
+
 const homeIcon = document.getElementById("home-page-icon");
 const homeHeader = document.getElementById("home-page-subtitle");
+const favoritesIcon = document.getElementById("favoritesContainer");
 
 window.addEventListener("DOMContentLoaded", () => {
   router(window.location.pathname);
@@ -21,14 +23,18 @@ homeHeader.addEventListener("click", () => {
 homeIcon.addEventListener("click", () => {
   navigateTo("/home");
 });
-
+// favoritesIcon.addEventListener("click", () => {
+//   navigateTo("/favorites");
+// });
 function router(path) {
   if (path === "/home") {
-    console.log("Home Page");
     homePage();
   } else if (path === "/songs") {
     songsPage();
-  } 
+  }
+  // } else if (path === "/favorites") {
+  //   FavoritesPage();
+  // }
 }
 window.onpopstate = router;
 

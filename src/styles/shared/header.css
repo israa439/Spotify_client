@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 /* MAIN */
 .home {
   flex: 1;
@@ -8,19 +9,7 @@
   position: relative;
 }
 
-/* MAIN OF THE HOME  */
-.home-main {
-  margin-top: 10px;
-  overflow-y: auto;
-  width: 100%;
-  height: 90%;
-  padding: 30px 0px 20px 20px;
-  background-color: rgba(151, 134, 134, 0.094);
-  border-radius: 10px;
-}
-.home-main::-webkit-scrollbar {
-  width: 0px;
-}
+
 
 /* HEADER OF THE HOME */
 .home-header {
@@ -43,12 +32,26 @@
   margin-right: 20px;
 }
 /* USER INFO CONTAINER */
-.user-info.active {
-  background-color: red;
-}
 .user-info {
   display: none;
 }
+.user-info.active {
+  margin-top: 7px;
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(42, 165, 89);
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+}
+.user-initials {
+  color: rgb(212, 205, 205);
+  font-family: "Roboto Mono", monospace;
+}
+
 /* SIGN UP AND SIGN IN DIVS */
 .sign-up,
 .log-in {

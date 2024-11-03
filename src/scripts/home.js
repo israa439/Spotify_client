@@ -18,19 +18,11 @@ async function homePage() {
   <div class="albums-wrapper inner-wrapper" id="podcastsContainer"></div>
   <i class="fa-solid fa-arrow-right rightArrow"></i>           
 </div>
-
-<div class="ending-line"></div>
-<footer class="home-footer">
-  <a href="https://github.com/israa439">
-    <img src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fgithub.png?alt=media&token=bf012543-05f8-44e2-aa32-a629a8622624"/>
-  </a>
-  <a href="https://www.linkedin.com/in/asa-kanaan-0ba825280/">
-    <img src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Flinkedin.png?alt=media&token=aa1938fa-c3e9-473d-a8d7-4e51149aa4a1"/>
-  </a>
-</footer>
   `;
-  let homeMain = document.getElementById("homeMain");
+  let homeMain = document.getElementById("variedMain");
+
   homeMain.innerHTML = mainhtml;
+
   // CREATING THE ELEMENTS
   let albumsContainer = document.getElementById("AlbumsContainer");
   let podcastContainer = document.getElementById("podcastsContainer");
@@ -43,16 +35,14 @@ async function homePage() {
   // FUNCTION TO GET THE ALBUMS FROM BACKEND
   async function getAlbums() {
     try {
-      const response = await fetch(
-        "https://spotify-web-app.azurewebsites.net/getAlbums",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          // credentials: "include",
-        }
-      );
+      const response = await fetch("http://localhost:5000/getAlbums", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       return await response.json();
     } catch (err) {
       console.log(err);
@@ -61,16 +51,13 @@ async function homePage() {
   // FUNCTION TO GET THE PODCASTS FROM BACKEND
   async function getPodcasts() {
     try {
-      const response = await fetch(
-        "https://spotify-web-app.azurewebsites.net/getPodcasts",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          // credentials: "include",
-        }
-      );
+      const response = await fetch("http://localhost:5000/getPodcasts", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return await response.json();
     } catch (err) {
       console.log(err);
@@ -78,7 +65,7 @@ async function homePage() {
   }
   let Albums = await getAlbums();
   let podcasts = await getPodcasts();
-  console.log(podcasts);
+
   // CALLING THE FUNCTION TO CREATE THE ALBUMS AND PODCASTS
   for (let i = 0; i < Albums.length; i++) {
     createAlbums(Albums[i]);
@@ -112,10 +99,10 @@ async function homePage() {
     podcastContainer.innerHTML += `
   <div class="podcast-card card"  data-podcast-id="${podcast.podcast_id}">
       <div class="podcast-card-image card-image">
-            <img src="${podcast.podcast_image}" class="podcast-image">     
+            <img src="${podcast.song_image}" class="podcast-image">     
       </div>
       <i class="fa-solid fa-circle-play songs-player podcasts-song-player"></i>
-      <span class="artist-name">${podcast.podcast_name}</span>
+      <span class="artist-name">${podcast.song_name}</span>
   </div>
   `;
   }
@@ -163,13 +150,17 @@ async function homePage() {
         index = index - 6;
       }
       let albumId = albumCard.getAttribute("data-album-id");
-      localStorage.setItem("albumId", albumId);
+
+      localStorage.setItem("ActiveAlbum", albumId);
+      localStorage.setItem("songID", Albums[index].songs[0].song_id);
+      localStorage.setItem("podcastID", undefined);
       localStorage.setItem("artistName", Albums[index].artist_name);
       localStorage.setItem("previousSongUrl", Albums[index].songs[0].song_url);
       localStorage.setItem("currentSongUrl", Albums[index].songs[0].song_url);
       localStorage.setItem("nextSongUrl", Albums[index].songs[1].song_url);
       localStorage.setItem("isPlaying", JSON.stringify(true));
       localStorage.setItem("currentTime", "0");
+
       await createAudioPlayer();
     }
   });
@@ -213,9 +204,8 @@ async function homePage() {
       albumsContainer.style.transition = "";
     }, Math.abs(velocity * 300));
   }
-
   // HANDLING ALL CLICKS ON PODCASTS
-  podcastsWrapper.addEventListener("click", (event) => {
+  podcastsWrapper.addEventListener("click", async (event) => {
     let cardWidth = podcastContainer.querySelector(".podcast-card").offsetWidth;
     // CHECKING IF THE CLICKED ELEMENT IS LEFT ARROW
     if (event.target.classList.contains("leftArrow")) {
@@ -238,23 +228,31 @@ async function homePage() {
         10
       );
     }
-  });
-  AlbumsWrapper.addEventListener("mouseover", playMusicIcon);
-  podcastsWrapper.addEventListener("mouseover", playMusicIcon);
+    // CHECKING IF THE CLICKED ELEMENT IS PLAY ICON
+    else if (event.target.classList.contains("songs-player")) {
+      let podcastCard = event.target.closest(".podcast-card");
+      let index = Array.from(podcastContainer.children).indexOf(podcastCard);
+      if (index > 5) {
+        index = index - 6;
+      }
+      let podcastId = podcastCard.getAttribute("data-podcast-id");
+      console.log(podcastId);
+      localStorage.setItem("ActiveAlbum", podcastId);
+      //  podcasts[index].song_name
+      localStorage.setItem("podcastID", podcasts[index].podcast_id);
+      localStorage.setItem("songID", undefined);
+      localStorage.setItem("artistName", " ");
+      localStorage.setItem("previousSongUrl", undefined);
+      localStorage.setItem("currentSongUrl", podcasts[index].song_url);
+      localStorage.setItem("nextSongUrl", undefined);
+      localStorage.setItem("isPlaying", JSON.stringify(true));
+      localStorage.setItem("currentTime", "0");
+      localStorage.setItem("podcastImage", podcasts[index].song_image);
 
-  // FUNCTION TO PLAY THE MUSIC ICON ON HOVER
-  async function playMusicIcon() {
-    const cards = document.querySelectorAll(".card");
-    cards.forEach((card) => {
-      const playIcon = card.querySelector(".fa-circle-play");
-      card.addEventListener("mouseover", () => {
-        playIcon.style.visibility = "visible";
-      });
-      card.addEventListener("mouseout", () => {
-        playIcon.style.visibility = "hidden";
-      });
-    });
-  }
+      await createAudioPlayer();
+    }
+  });
+
   // FUNCTION TO MOVE THE SLIDER TO THE LEFT
   function moveLeft(cardWidth, scrollAmount, container, slidesAmount, gap) {
     let scrollStep = (cardWidth + gap) * slidesAmount;

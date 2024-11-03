@@ -1,9 +1,12 @@
-import { getSongs } from "./shared/currentAlbum.js";
+import { getSongs } from "./shared/ActiveAlbum.js";
+import { getpodcasts } from "./shared/getPodcasts.js";
+import { addToFav } from "./shared/addToFav.js";
 let updateInterval;
 async function createAudioPlayer() {
   clearInterval(updateInterval);
 
-  let songs = await getSongs();
+  let isPodcast = localStorage.getItem("ActiveAlbum")?.startsWith("1");
+  let songs = isPodcast ? await getpodcasts() : await getSongs();
   const home = document.getElementById("audioPlayerContainer");
   const audioPlayer = document.getElementById("audio");
   const playButton = document.getElementById("play");
@@ -18,16 +21,45 @@ async function createAudioPlayer() {
   const autoplayer = document.getElementById("switch");
   const audioImage = document.querySelector(".audio-image-container img");
   const songName = document.getElementById("current-song-name");
-  const addToPlaylist = document.getElementById("add-to-playlist");
   const exitAudioPlayer = document.getElementById("exit-audio-player");
   const artistName = document.getElementById("Artist-name");
-  window.addEventListener("beforeunload", (event) => {
+  const addSong = document.getElementById("add-to-favorites");
+
+  window.addEventListener("beforeunload", () => {
     localStorage.setItem("isPlaying", JSON.stringify(false));
   });
 
   if (songUrl) {
     home.style.display = "flex";
     let isPlaying = JSON.parse(localStorage.getItem("isPlaying"));
+    let podcastid = localStorage.getItem("ActiveAlbum");
+    isPodcast = podcastid.startsWith("1");
+
+    nextMusic.disabled = isPodcast;
+    previousMusic.disabled = isPodcast;
+    autoplayer.disabled = isPodcast;
+    autoplayer.checked = !isPodcast;
+    if (isPodcast) {
+      autoplayer.classList.add("not-Active");
+      nextMusic.querySelector("i").style.color = "rgba(197, 192, 192, 0.731)";
+      previousMusic.querySelector("i").style.color =
+        "rgba(197, 192, 192, 0.731)";
+    } else {
+      autoplayer.classList.remove("not-Active");
+      nextMusic.querySelector("i").style.color = "#fff";
+      previousMusic.querySelector("i").style.color = "#fff";
+    }
+    nextMusic.style.cursor = isPodcast ? "not-allowed" : "pointer";
+    previousMusic.style.cursor = isPodcast ? "not-allowed" : "pointer";
+    autoplayer.style.cursor = isPodcast ? "not-allowed" : "pointer";
+
+    audioPlayer.src = songUrl;
+    audioImage.src = isPodcast ? getPodcastImage(songUrl) : getImage(songUrl);
+    songName.innerHTML = isPodcast
+      ? getPodcastName(songUrl)
+      : getSongName(songUrl);
+    artistName.innerHTML = isPodcast ? " " : localStorage.getItem("artistName");
+
     audioPlayer.src = songUrl;
     audioImage.src = getImage(songUrl);
     songName.innerHTML = getSongName(songUrl);
@@ -66,6 +98,16 @@ async function createAudioPlayer() {
   function getSongName(songUrl) {
     let song = songs.find((song) => song.song_url === songUrl);
     return song.song_name;
+  }
+  // GET IMAGE OF CURRENT PODCAST
+  function getPodcastImage(songUrl) {
+    const index = songs.findIndex((song) => song.song_url === songUrl);
+    return songs[index].song_image;
+  }
+  // GET SONG NAME OF CURRENT PODCAST
+  function getPodcastName(songUrl) {
+    const index = songs.findIndex((song) => song.song_url === songUrl);
+    return songs[index].song_name;
   }
   // PLAY NEXT MUSIC
   function playNextMusic() {
@@ -114,6 +156,8 @@ async function createAudioPlayer() {
     let currentSongIndex = songs.findIndex(
       (song) => song.song_url === currentSongUrl
     );
+    console.log(currentSongIndex);
+
     if (currentSongIndex - 1 < 0) {
       localStorage.setItem("previousSongUrl", songs[0].song_url);
       audioPlayer.src = localStorage.getItem("currentSongUrl");
@@ -199,6 +243,10 @@ async function createAudioPlayer() {
     home.style.display = "none";
     audioPlayer.pause();
   });
+  // ADD SONG FUNCTIONALITY
+  addSong.addEventListener("click", async () => {
+    addToFav();
+  });
   // PROGRESS BAR FUNCTIONALITY
   progressBar.addEventListener("input", () => {
     const value = progressBar.value;
@@ -222,20 +270,7 @@ async function createAudioPlayer() {
   progressBar.addEventListener("touchend", () => {
     progressBar.classList.remove("thumb-active");
   });
-  // ADD TO PLAYLIST FUNCTIONALITY
-  addToPlaylist.addEventListener("mouseover", () => {
-    const playlistFeatures = document.getElementById("playlist-features");
-    playlistFeatures.style.display = "block";
-    playlistFeatures.addEventListener("mouseover", () => {
-      playlistFeatures.style.display = "block";
-    });
-    playlistFeatures.addEventListener("mouseout", () => {
-      playlistFeatures.style.display = "none";
-    });
-  });
-  addToPlaylist.addEventListener("mouseout", () => {
-    document.getElementById("playlist-features").style.display = "none";
-  });
+
   // UPDATE PROGRESS BAR IN LOCAL STORAGE FUNCTIONALITY
   updateInterval = setInterval(() => {
     const audioPlayer = document.getElementById("audio");

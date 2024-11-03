@@ -6,7 +6,7 @@
 }
 /* HEADER OF THE ALBUMS AND PODCASTS */
 .wrapper-header {
-  padding: 20px 20px;
+  padding: 20px 20px 70px;
   height: 70px;
 }
 /* OUTER WRAPPER */
@@ -23,7 +23,6 @@
   transition: transform 0.5s ease-in-out;
   width: fit-content;
   padding-left: 20px;
-  
 }
 /* CARD */
 .card {
@@ -63,7 +62,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-
   cursor: pointer;
   z-index: 1;
 }
@@ -90,6 +88,9 @@
   cursor: pointer;
   bottom: 25%;
   right: 5%;
+}
+.card:hover .songs-player {
+  visibility: visible;
 }
 .podcasts-song-player {
   bottom: 14%;
@@ -140,7 +141,7 @@
 
 /* SPACE DIV  */
 .space-div {
-  margin-top: 70px;
+  margin-top: 80px;
 }
 /* ENDING LINE  */
 .ending-line {
@@ -162,16 +163,23 @@
   color: rgba(151, 134, 134, 0.187);
   background-color: transparent;
 }
-/* MEDIA QUERIES */
-@media(max-width: 560px) {
+
+
+
+@media (max-width: 600px) {
+  .songs-player {
+    visibility: visible;
+  }
+}
+@media (max-width: 560px) {
   .podcast-card {
     min-width: 180px;
     min-height: 230px;
   }
 }
-@media (max-width: 429px){
-  .album-card{
+@media (max-width: 429px) {
+  .album-card {
     min-width: 130px;
-    min-height: 130px;  
+    min-height: 130px;
   }
 }
