@@ -138,8 +138,8 @@ async function homePage() {
         index = index - 6;
       }
       let albumId = albumCard.getAttribute("data-album-id");
-      localStorage.setItem("albumId", albumId);
-      localStorage.setItem("artistName", Albums[index].artist_name);
+      localStorage.setItem("ViewedAlbumId", albumId);
+      localStorage.setItem("ViewedArtistName", Albums[index].artist_name);
       navigateTo("/songs");
     }
     // CHECKING IF THE CLICKED ELEMENT IS PLAY ICON
@@ -150,11 +150,11 @@ async function homePage() {
         index = index - 6;
       }
       let albumId = albumCard.getAttribute("data-album-id");
-
+      localStorage.setItem("ActiveArtistName",Albums[index].artist_name)
       localStorage.setItem("ActiveAlbum", albumId);
       localStorage.setItem("songID", Albums[index].songs[0].song_id);
       localStorage.setItem("podcastID", undefined);
-      localStorage.setItem("artistName", Albums[index].artist_name);
+      localStorage.setItem("ActiveArtistName", Albums[index].artist_name);
       localStorage.setItem("previousSongUrl", Albums[index].songs[0].song_url);
       localStorage.setItem("currentSongUrl", Albums[index].songs[0].song_url);
       localStorage.setItem("nextSongUrl", Albums[index].songs[1].song_url);
@@ -241,7 +241,7 @@ async function homePage() {
       //  podcasts[index].song_name
       localStorage.setItem("podcastID", podcasts[index].podcast_id);
       localStorage.setItem("songID", undefined);
-      localStorage.setItem("artistName", " ");
+      localStorage.setItem("ActiveArtistName", " ");
       localStorage.setItem("previousSongUrl", undefined);
       localStorage.setItem("currentSongUrl", podcasts[index].song_url);
       localStorage.setItem("nextSongUrl", undefined);
@@ -250,8 +250,11 @@ async function homePage() {
       localStorage.setItem("podcastImage", podcasts[index].song_image);
 
       await createAudioPlayer();
+    
+
     }
   });
+
 
   // FUNCTION TO MOVE THE SLIDER TO THE LEFT
   function moveLeft(cardWidth, scrollAmount, container, slidesAmount, gap) {

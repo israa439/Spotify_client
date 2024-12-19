@@ -1,6 +1,6 @@
 async function getSongs() {
   try {
-    let AlbumId = localStorage.getItem("albumId");
+    let AlbumId = localStorage.getItem("ViewedAlbumId");
     if (!AlbumId) {
       return;
     }

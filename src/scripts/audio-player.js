@@ -2,9 +2,15 @@ import { getSongs } from "./shared/ActiveAlbum.js";
 import { getpodcasts } from "./shared/getPodcasts.js";
 import { addToFav } from "./shared/addToFav.js";
 let updateInterval;
+
+const addSong = document.getElementById("add-to-favorites");
+// ADD SONG FUNCTIONALITY
+addSong.addEventListener("click", async () => {
+  addToFav();
+});
+
 async function createAudioPlayer() {
   clearInterval(updateInterval);
-
   let isPodcast = localStorage.getItem("ActiveAlbum")?.startsWith("1");
   let songs = isPodcast ? await getpodcasts() : await getSongs();
   const home = document.getElementById("audioPlayerContainer");
@@ -23,7 +29,6 @@ async function createAudioPlayer() {
   const songName = document.getElementById("current-song-name");
   const exitAudioPlayer = document.getElementById("exit-audio-player");
   const artistName = document.getElementById("Artist-name");
-  const addSong = document.getElementById("add-to-favorites");
 
   window.addEventListener("beforeunload", () => {
     localStorage.setItem("isPlaying", JSON.stringify(false));
@@ -58,12 +63,14 @@ async function createAudioPlayer() {
     songName.innerHTML = isPodcast
       ? getPodcastName(songUrl)
       : getSongName(songUrl);
-    artistName.innerHTML = isPodcast ? " " : localStorage.getItem("artistName");
+    artistName.innerHTML = isPodcast
+      ? " "
+      : localStorage.getItem("ActiveArtistName");
 
     audioPlayer.src = songUrl;
     audioImage.src = getImage(songUrl);
     songName.innerHTML = getSongName(songUrl);
-    artistName.innerHTML = localStorage.getItem("artistName");
+    artistName.innerHTML = localStorage.getItem("ActiveArtistName");
 
     if (isPlaying) {
       audioPlayer.play();
@@ -77,6 +84,8 @@ async function createAudioPlayer() {
       playButton.style.display = "block";
       pauseButton.style.display = "none";
     }
+  } else {
+    return;
   }
   // PLAY MUSIC
   function playMusic(songUrl) {
@@ -111,20 +120,29 @@ async function createAudioPlayer() {
   }
   // PLAY NEXT MUSIC
   function playNextMusic() {
+    let songID = localStorage.getItem("songID");
     let currentSongUrl = localStorage.getItem("currentSongUrl");
-    let currentSongIndex = songs.findIndex(
-      (song) => song.song_url === currentSongUrl
-    );
+    let currentSongIndex = -1;
+    console.log(songs);
+    console.log(songID);
+    for (let i = 0; i < songs.length; i++) {
+      if (songs[i].song_id === songID) {
+        currentSongIndex = i;
+        break;
+      }
+    }
 
     if (currentSongIndex + 1 >= songs.length) {
       localStorage.setItem("nextSongUrl", undefined);
       console.log("No more songs in the queue");
       return;
     }
-
+    console.log(currentSongIndex);
+    return;
     let nextSongUrl = songs[currentSongIndex + 1].song_url;
     localStorage.setItem("previousSongUrl", currentSongUrl);
     localStorage.setItem("currentSongUrl", nextSongUrl);
+    localStorage.setItem("songID", songs[currentSongIndex + 1].song_id);
     localStorage.setItem("currentTime", 0);
     localStorage.setItem(
       "nextSongUrl",
@@ -152,10 +170,15 @@ async function createAudioPlayer() {
   nextMusic.addEventListener("click", playNextMusic);
   // GO BACK TO PREVIOUS SONG FUNCTIONALITY
   previousMusic.addEventListener("click", () => {
+    let songID = localStorage.getItem("songID");
     let currentSongUrl = localStorage.getItem("currentSongUrl");
-    let currentSongIndex = songs.findIndex(
-      (song) => song.song_url === currentSongUrl
-    );
+    let currentSongIndex = -1;
+    for (let i = 0; i < songs.length; i++) {
+      if (songs[i].song_id === songID) {
+        currentSongIndex = i;
+        break;
+      }
+    }
     console.log(currentSongIndex);
 
     if (currentSongIndex - 1 < 0) {
@@ -169,6 +192,7 @@ async function createAudioPlayer() {
     localStorage.setItem("nextSongUrl", currentSongUrl);
     localStorage.setItem("currentSongUrl", previousSongUrl);
     localStorage.setItem("currentTime", 0);
+    localStorage.setItem("songID", songs[currentSongIndex - 1].song_id);
     localStorage.setItem(
       "previousSongUrl",
       currentSongIndex - 2 >= 0
@@ -243,10 +267,7 @@ async function createAudioPlayer() {
     home.style.display = "none";
     audioPlayer.pause();
   });
-  // ADD SONG FUNCTIONALITY
-  addSong.addEventListener("click", async () => {
-    addToFav();
-  });
+
   // PROGRESS BAR FUNCTIONALITY
   progressBar.addEventListener("input", () => {
     const value = progressBar.value;

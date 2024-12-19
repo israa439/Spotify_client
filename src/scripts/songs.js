@@ -4,9 +4,8 @@ import { getSongs as activeSongs } from "./shared/ActiveAlbum.js";
 
 async function songsPage() {
   let displayedSongs = await getSongs();
-  let playedSongs=await activeSongs();
-  console.log(playedSongs)
-  let artist_name = localStorage.getItem("artistName");
+  let playedSongs = await activeSongs();
+  let artist_name = localStorage.getItem("ViewedArtistName");
   let containerHTML = `
 <div class="image-container">
   <img src="${displayedSongs[0].song_image}"/>
@@ -77,12 +76,20 @@ async function songsPage() {
     if (event.target.classList.contains("player-icon")) {
       let songCard = event.target.closest(".song");
       let index = songCard.getAttribute("data-song-id");
-      localStorage.setItem("ActiveAlbum", localStorage.getItem("albumId"));
+
       localStorage.setItem(
-        "currentSongUrl",
-        playedSongs[index - 1].song_url
+        "ActiveAlbum",
+        localStorage.getItem("ViewedAlbumId")
       );
-      localStorage.setItem("songID", playedSongs[0].song_id);
+      localStorage.setItem(
+        "ActiveArtistName",
+        localStorage.getItem("ViewedArtistName")
+      );
+
+      playedSongs = await activeSongs();
+
+      localStorage.setItem("currentSongUrl", playedSongs[index - 1].song_url);
+      localStorage.setItem("songID", playedSongs[index - 1].song_id);
       localStorage.setItem("podcastID", undefined);
       localStorage.setItem("currentTime", 0);
       localStorage.setItem("isPlaying", JSON.stringify(true));
@@ -90,11 +97,14 @@ async function songsPage() {
         localStorage.setItem(
           "previousSongUrl",
           playedSongs[index - 1].song_url
+          
         );
+        console.log(playedSongs[index - 1].song_url);  
       } else {
         localStorage.setItem(
           "previousSongUrl",
           playedSongs[index - 2].song_url
+          
         );
       }
       if (index == playedSongs.length) {
