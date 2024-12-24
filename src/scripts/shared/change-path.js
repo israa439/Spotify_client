@@ -1,5 +1,6 @@
 import { homePage } from "../home.js";
 import { songsPage } from "../songs.js";
+import { favouritesPage } from "../favorites.js";
 
 const homeIcon = document.getElementById("home-page-icon");
 const homeHeader = document.getElementById("home-page-subtitle");
@@ -23,18 +24,18 @@ homeHeader.addEventListener("click", () => {
 homeIcon.addEventListener("click", () => {
   navigateTo("/home");
 });
-// favoritesIcon.addEventListener("click", () => {
-//   navigateTo("/favorites");
-// });
+favoritesIcon.addEventListener("click", () => {
+  navigateTo("/favorites");
+});
+
 function router(path) {
   if (path === "/home") {
     homePage();
   } else if (path === "/songs") {
     songsPage();
+  } else if (path === "/favorites") {
+    favouritesPage();
   }
-  // } else if (path === "/favorites") {
-  //   FavoritesPage();
-  // }
 }
 window.onpopstate = router;
 

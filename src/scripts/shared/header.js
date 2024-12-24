@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         logoutHTML.innerHTML = ``;
         createAccountContainer.classList.add("active");
         userInfoAccount.classList.remove("active");
+        localStorage.setItem("isAuthenticated", false);
         return;
       }
       logoutHTML.innerHTML = `
@@ -41,6 +42,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         .join("")
         .toUpperCase();
       userInfoAccount.innerHTML = `<div class="user-initials">${initials}</div>`;
+      localStorage.setItem("isAuthenticated", true);
     } catch (err) {
       createAccountContainer.classList.add("active");
     }

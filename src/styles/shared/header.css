@@ -9,8 +9,6 @@
   position: relative;
 }
 
-
-
 /* HEADER OF THE HOME */
 .home-header {
   display: flex;
@@ -19,6 +17,7 @@
   width: 100%;
   height: 10%;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 /* CREATE ACCOUNT DIV  */
 .create-account {

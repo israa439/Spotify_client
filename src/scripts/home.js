@@ -166,10 +166,10 @@ async function homePage() {
   });
   // HANDLING ALBUMS WRAPPER TOUCH EVENTS
   albumsContainer.addEventListener("touchstart", (event) => {
-    startX = e.touches[0].clientX; // Get the initial touch position
+    startX = event.touches[0].clientX; // Get the initial touch position
     startTime = new Date().getTime(); // Get the time of touch start
   });
-  albumsContainer.addEventListener("touchend", (event) => {
+  albumsContainer.addEventListener("touchend", (e) => {
     endX = e.changedTouches[0].clientX; // Get the final touch position
     endTime = new Date().getTime(); // Get the time of touch end
 

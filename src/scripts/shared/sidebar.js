@@ -4,6 +4,7 @@ let logoutNo = document.getElementById("logout-no");
 let logoutYes = document.getElementById("logout-yes");
 let sideBar = document.getElementById("sideBar");
 let footer = document.getElementById("footerBar");
+let favsContainer = document.getElementById("favoritesContainer");
 
 let isResizing = false;
 let startX = 0;
@@ -72,3 +73,7 @@ logoutContainer.addEventListener("click", async () => {
     console.error(err);
   }
 });
+
+favsContainer.addEventListener("click",async()=>{
+
+})

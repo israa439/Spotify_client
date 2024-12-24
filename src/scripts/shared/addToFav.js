@@ -2,8 +2,6 @@
 async function addToFav() {
   let songID = localStorage.getItem("songID");
   let podcastID = localStorage.getItem("podcastID");
-  console.log(songID, typeof songID);
-  console.log(podcastID, typeof podcastID);
   if (songID != "undefined") {
     try {
       const formData = {
@@ -17,7 +15,8 @@ async function addToFav() {
         },
         body: JSON.stringify(formData),
       });
-      return await response.json();
+      let res=await response.json();
+      console.log(res);
     } catch (err) {
       console.log(err);
     }

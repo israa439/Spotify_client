@@ -1,0 +1,42 @@
+/* FAV CONTAINER UNAUTH*/
+.fav-container-unauth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 550px;
+}
+/* UNAUTH TEXTS */
+.display-text,
+.auth-text {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+/* FAV CONTAINER AUTH */
+.fav-container-auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 550px;
+}
+@media (max-width: 655px) {
+  .display-text {
+    font-size: 30px;
+  }
+  .auth-text {
+    font-size: 20px;
+  }
+}
+@media (max-width: 510px) {
+  .display-text {
+    font-size: 25px;
+  }
+  .auth-text {
+    font-size: 15px;
+  }
+}

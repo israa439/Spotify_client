@@ -41,6 +41,7 @@ body {
   flex-direction: column;
   gap: 100px;
 }
+
 /* Remove scrollbar for Chrome, Safari and Opera */
 .home-main::-webkit-scrollbar {
   width: 0px;
