@@ -236,7 +236,6 @@ async function homePage() {
         index = index - 6;
       }
       let podcastId = podcastCard.getAttribute("data-podcast-id");
-      console.log(podcastId);
       localStorage.setItem("ActiveAlbum", podcastId);
       //  podcasts[index].song_name
       localStorage.setItem("podcastID", podcasts[index].podcast_id);

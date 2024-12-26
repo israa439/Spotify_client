@@ -15,8 +15,12 @@ async function addToFav() {
         },
         body: JSON.stringify(formData),
       });
-      let res=await response.json();
-      console.log(res);
+      let res = await response.json();
+
+      if (response.status === 400) {
+        return false;
+      }
+      return true;
     } catch (err) {
       console.log(err);
     }
@@ -34,8 +38,11 @@ async function addToFav() {
         body: JSON.stringify(formData),
       });
       let res = await response.json();
-      console.log(res);
-      
+
+      if (response.status === 400) {
+        return false;
+      }
+      return true;
     } catch (err) {
       console.log(err);
     }

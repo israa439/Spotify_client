@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles/songs.css" />
     <link rel="stylesheet" href="styles/home.css" />
     <link rel="stylesheet" href="styles/favorites.css" />
+    <link rel="stylesheet" href="styles/shared/generatSong.css" />
     <script
       src="https://kit.fontawesome.com/094df3e6f8.js"
       crossorigin="anonymous"
@@ -117,7 +118,7 @@
           <h3>You should log in to use this feature.</h3>
         </div>
         <div class="auth-modal-body">
-          <a href="account.html"><button class="auth-yes" id="auth-yes">Log in</button><a>
+          <a href="account.html"><button class="auth-yes" id="auth-yes">Log in</button></a>
           <button class="auth-no" id="auth-no">Cancel</button>
         </div>
       </div>
@@ -210,12 +211,14 @@
         <i class="fa-regular fa-circle-xmark"></i>
       </div>
     </footer>
+    <div class="pop-up" id="favs-pop-up"></div>
+    </div>
 
     <script src="./scripts/audio-player.js" type="module"></script>
     <script src="./scripts/shared/change-path.js" type="module"></script>
     <script src="./scripts/home.js" type="module"></script>
-    <script src="./scripts/shared/sidebar.js"></script>
-    <script src="./scripts/shared/header.js"></script>
-    <script src="./scripts/favorites.js"></script>
+    <script type="module" src="./scripts/shared/sidebar.js"></script>
+    <script type="module" src="./scripts/shared/header.js"></script>
+    <script type="module"src="./scripts/favorites.js"></script>
   </body>
 </html>

@@ -19,11 +19,21 @@ const pauseButton = document.getElementById("pause");
 const progressBar = document.getElementById("progress-bar");
 const currentTimeElement = document.getElementById("current-time");
 const durationElement = document.getElementById("duration");
-
 const addSong = document.getElementById("add-to-favorites");
 // ADD SONG FUNCTIONALITY
 addSong.addEventListener("click", async () => {
-  addToFav();
+  let res = await addToFav();
+  const pop_up = document.getElementById("favs-pop-up");
+
+  if (res == true) {
+    pop_up.innerHTML = `song added to favorites`;
+  } else {
+    pop_up.innerHTML = `song already in favorites`;
+  }
+  pop_up.classList.add("active");
+  setTimeout(() => {
+    pop_up.classList.remove("active");
+  }, 5000);
 });
 //SETTING ISPLAYING TO FALSE WHEN USER REFRESHES THE PAGE
 window.addEventListener("beforeunload", () => {

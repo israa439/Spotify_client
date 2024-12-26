@@ -16,7 +16,25 @@
   text-align: center;
   flex-wrap: wrap;
 }
+/* FAV SONG AND PODCAST CONATAINER */
+.fav-song-container,
+.fav-podcast-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
 
+  width: 100%;
+}
+.fav-song-container::-webkit-scrollbar,
+.fav-podcast-container::-webkit-scrollbar {
+  width: 0px;
+}
+.fav-song-header,
+.fav-podcast-header {
+  margin-top: 6%;
+}
 /* FAV CONTAINER AUTH */
 .fav-container-auth {
   display: flex;

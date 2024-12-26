@@ -1,3 +1,5 @@
+import { navigateTo } from "./change-path.js";
+import { sendRequest } from "./header.js";
 let logoutContainer = document.getElementById("logoutContainer");
 let logoutModal = document.getElementById("logoutModal");
 let logoutNo = document.getElementById("logout-no");
@@ -51,29 +53,23 @@ sideBar.addEventListener("mouseup", () => {
 });
 
 logoutContainer.addEventListener("click", async () => {
-  try {
-    
-    logoutModal.style.display = "flex";
-    logoutNo.addEventListener("click", () => {
-      logoutModal.style.display = "none";
-    });
-    logoutYes.addEventListener("click", async () => {
-      const response = fetch("http://localhost:5000/logout", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      let data = await response;
-      console.log(data);
-      location.reload();
-    });
-  } catch (err) {
-    console.error(err);
-  }
+  logoutModal.style.display = "flex";
 });
 
-favsContainer.addEventListener("click",async()=>{
-
-})
+logoutNo.addEventListener("click", () => {
+  logoutModal.style.display = "none";
+});
+logoutYes.addEventListener("click", async () => {
+  const response = fetch("http://localhost:5000/logout", {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  let data = await response;
+  console.log(data);
+  navigateTo("/home");
+  logoutModal.style.display = "none";
+  await sendRequest();
+});

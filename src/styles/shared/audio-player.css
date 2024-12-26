@@ -334,6 +334,24 @@
 .exit-audio-player i {
   cursor: pointer;
 }
+/* ADD TO FAVS POP UP */
+.pop-up {
+ position: absolute;
+  width: 200px;
+  height: 50px;
+  background-color: rgba(61, 51, 51, 0.963);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pop-up.active {
+  display: flex;
+  animation: popUpAnimation 3.7s ease forwards;
+}
 /* MEDIA QUERIES */
 @media (max-width: 600px) {
   .audio-player-container {
@@ -342,5 +360,19 @@
   }
   .audio-info-container {
     display: none;
+  }
+}
+@keyframes popUpAnimation {
+  0% {
+    top: -100px;
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    top: 10%;
+    opacity: 1;
+    transform: translate(-50%, -50%);
   }
 }
