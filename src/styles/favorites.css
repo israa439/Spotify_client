@@ -1,3 +1,7 @@
+.varied-main {
+  min-height: auto;
+}
+
 /* FAV CONTAINER UNAUTH*/
 .fav-container-unauth {
   display: flex;
@@ -33,6 +37,7 @@
 }
 .fav-song-header,
 .fav-podcast-header {
+  margin-left: 3%;
   margin-top: 6%;
 }
 /* FAV CONTAINER AUTH */

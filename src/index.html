@@ -1,224 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spotify-Web Player</title>
-    <link rel="stylesheet" href="styles/shared/audio-player.css" />
-    <link rel="stylesheet" href="styles/shared/general.css" />
-    <link rel="stylesheet" href="styles/shared/sidebar.css" />
-    <link rel="stylesheet" href="styles/shared/header.css" />
-    <link rel="stylesheet" href="styles/songs.css" />
-    <link rel="stylesheet" href="styles/home.css" />
-    <link rel="stylesheet" href="styles/favorites.css" />
-    <link rel="stylesheet" href="styles/shared/generatSong.css" />
-    <script
-      src="https://kit.fontawesome.com/094df3e6f8.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
 
-  <body id="body">
-    <div class="main-wrapper">
-      <side class="side-bar" id="sideBar">
-        <div class="upper-side-bar">
-          <div class="spotify-logo">
-            <i class="fa-brands fa-spotify"></i>
-          </div>
-          <div class="icon-subtitles" id="homeContainer">
-            <i class="fa-solid fa-house" id="home-page-icon"></i>
-            <span id="home-page-subtitle">Home</span>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify-Web Player</title>
+  <link rel="stylesheet" href="styles/shared/audio-player.css" />
+  <link rel="stylesheet" href="styles/shared/general.css" />
+  <link rel="stylesheet" href="styles/shared/sidebar.css" />
+  <link rel="stylesheet" href="styles/shared/header.css" />
+  <link rel="stylesheet" href="styles/songs.css" />
+  <link rel="stylesheet" href="styles/home.css" />
+  <link rel="stylesheet" href="styles/favorites.css" />
+  <link rel="stylesheet" href="styles/shared/generatSong.css" />
+  <script src="https://kit.fontawesome.com/094df3e6f8.js" crossorigin="anonymous"></script>
+</head>
 
+<body id="body">
+  <div class="main-wrapper">
+    <side class="side-bar" id="sideBar">
+      <div class="upper-side-bar">
+        <div class="spotify-logo">
+          <i class="fa-brands fa-spotify"></i>
         </div>
-        <div class="lower-side-bar" id="lower-side-bar">
-          <div class="saving-songs">
-            <div class="icon-subtitles" id="playListContainer">
-              <i class="fa-solid fa-list-ul"></i>
-              <span>Play List</span>
-            </div>
-            <div class="icon-subtitles" id="favoritesContainer">
-              <i class="fa-solid fa-heart"></i>
-              <span>Favorites</span>
-            </div>
-          </div>
-          <div class="icon-subtitles" id="logoutContainer"></div>
+        <div class="icon-subtitles" id="homeContainer">
+          <i class="fa-solid fa-house" id="home-page-icon"></i>
+          <span id="home-page-subtitle">Home</span>
         </div>
-      </side>
-      <main class="home" id="home">
-        <header class="home-header" id="homeHeader">
-          <div class="create-account" id="createAccount">
-            <a href="account.html"><button class="sign-up">Sign Up</button></a>
-            <a href="account.html"><button class="log-in">Log In</button></a>
-          </div>
-          <div class="user-info" id="userInfo"></div>
-        </header>
-        <main class="home-main" id="homeMain">
-          <div class="varied-main" id="variedMain"></div>
 
-          <footer class="footer">
-            <div class="footer-content">
-              <div class="footer-links-container" id="footer-Pursue">
-                <h3 class="footer-heading">Pursue</h3>
-                <span class="footer-text">info</span>
-                <span class="footer-text">Jobs</span>
-                <span class="footer-text">For the Record</span>
-              </div>
-              <div class="footer-links-container" id="footer-Community">
-                <h3 class="footer-heading">Community</h3>
-                <span class="footer-text">Services for artists</span>
-                <span class="footer-text">Developers</span>
-                <span class="footer-text">Advertising</span>
-                <span class="footer-text">Investors</span>
-                <span class="footer-text">Suppliers</span>
-              </div>
-              <div class="footer-links-container" id="footer-links">
-                <h3 class="footer-heading">Useful Links</h3>
-                <span class="footer-text">Support </span>
-                <span class="footer-text">Free Mobile App</span>
-              </div>
-              <div class="footer-links-container" id="footer-Subscriptions">
-                <h3 class="footer-heading">Spotify Subscriptions</h3>
-                <span class="footer-text">Services for artists</span>
-                <span class="footer-text">Developers</span>
-                <span class="footer-text">Advertising</span>
-                <span class="footer-text">Investors</span>
-                <span class="footer-text">Suppliers</span>
-              </div>
+      </div>
+      <div class="lower-side-bar" id="lower-side-bar">
+        <div class="saving-songs">
+          <div class="icon-subtitles" id="playListContainer">
+            <i class="fa-solid fa-list-ul"></i>
+            <span>Play List</span>
+          </div>
+          <div class="icon-subtitles" id="favoritesContainer">
+            <i class="fa-solid fa-heart"></i>
+            <span>Favorites</span>
+          </div>
+        </div>
+        <div class="icon-subtitles" id="logoutContainer"></div>
+      </div>
+    </side>
+    <main class="home" id="home">
+      <header class="home-header" id="homeHeader">
+        <div class="create-account" id="createAccount">
+          <a href="account.html"><button class="sign-up">Sign Up</button></a>
+          <a href="account.html"><button class="log-in">Log In</button></a>
+        </div>
+        <div class="user-info" id="userInfo"></div>
+      </header>
+      <main class="home-main" id="homeMain">
+        <div class="varied-main" id="variedMain"></div>
+
+        <footer class="footer">
+          <div class="footer-content">
+            <div class="footer-links-container" id="footer-Pursue">
+              <h3 class="footer-heading">Pursue</h3>
+              <span class="footer-text">info</span>
+              <span class="footer-text">Jobs</span>
+              <span class="footer-text">For the Record</span>
             </div>
-            <div class="footer-logos">
-              <span class="instagram-logo"
-                ><i class="fa-brands fa-instagram"></i
-              ></span>
-              <span class="twitter-logo"
-                ><i class="fa-brands fa-twitter"></i
-              ></span>
-              <span class="facebook-logo"
-                ><i class="fa-brands fa-facebook"></i
-              ></span>
+            <div class="footer-links-container" id="footer-Community">
+              <h3 class="footer-heading">Community</h3>
+              <span class="footer-text">Services for artists</span>
+              <span class="footer-text">Developers</span>
+              <span class="footer-text">Advertising</span>
+              <span class="footer-text">Investors</span>
+              <span class="footer-text">Suppliers</span>
             </div>
-          </footer>
-        </main>
+            <div class="footer-links-container" id="footer-links">
+              <h3 class="footer-heading">Useful Links</h3>
+              <span class="footer-text">Support </span>
+              <span class="footer-text">Free Mobile App</span>
+            </div>
+            <div class="footer-links-container" id="footer-Subscriptions">
+              <h3 class="footer-heading">Spotify Subscriptions</h3>
+              <span class="footer-text">Services for artists</span>
+              <span class="footer-text">Developers</span>
+              <span class="footer-text">Advertising</span>
+              <span class="footer-text">Investors</span>
+              <span class="footer-text">Suppliers</span>
+            </div>
+          </div>
+          <div class="footer-logos">
+            <span class="instagram-logo"><i class="fa-brands fa-instagram"></i></span>
+            <span class="twitter-logo"><i class="fa-brands fa-twitter"></i></span>
+            <span class="facebook-logo"><i class="fa-brands fa-facebook"></i></span>
+          </div>
+        </footer>
       </main>
+    </main>
+  </div>
+  <div class="logout-modal" id="logoutModal">
+    <div class="logout-modal-content">
+      <div class="logout-modal-header">
+        <h3>Are you sure you want to log out?</h3>
+      </div>
+      <div class="logout-modal-body">
+        <button class="logout-yes" id="logout-yes">Yes</button>
+        <button class="logout-no" id="logout-no">No</button>
+      </div>
     </div>
-    <div class="logout-modal" id="logoutModal">
-      <div class="logout-modal-content">
-        <div class="logout-modal-header">
-          <h3>Are you sure you want to log out?</h3>
-        </div>
-        <div class="logout-modal-body">
-          <button class="logout-yes" id="logout-yes">Yes</button>
-          <button class="logout-no" id="logout-no">No</button>
+  </div>
+  <!-- <div class="authenticate-modal" id="authModal">
+    <div class="auth-modal-content">
+      <div class="auth-modal-header">
+        <h3>You should log in to use this feature.</h3>
+      </div>
+      <div class="auth-modal-body">
+        <a href="account.html"><button class="auth-yes" id="auth-yes">Log in</button></a>
+        <button class="auth-no" id="auth-no">Cancel</button>
+      </div>
+    </div>
+  </div> -->
+  <footer class="audio-player-container" id="audioPlayerContainer">
+    <audio id="audio" controls style="display: none"></audio>
+    <div class="audio-info-container">
+      <div class="audio-image-container">
+        <img src="" />
+      </div>
+      <div class="audio-details">
+        <span class="Artist-name" id="Artist-name"></span>
+        <span class="Song-name" id="current-song-name">Artist Name</span>
+      </div>
+      <div class="favorites-container">
+        <div class="description" id="fav-description">Add to fav</div>
+        <div class="fav-icon" id="fav-icon">
+          <i class="fa-solid fa-heart fa-xl" style="color: #dd0e0e;"></i>
         </div>
       </div>
     </div>
-    <div class="authenticate-modal" id="authModal">
-      <div class="auth-modal-content">
-        <div class="auth-modal-header">
-          <h3>You should log in to use this feature.</h3>
-        </div>
-        <div class="auth-modal-body">
-          <a href="account.html"><button class="auth-yes" id="auth-yes">Log in</button></a>
-          <button class="auth-no" id="auth-no">Cancel</button>
-        </div>
-      </div>
-    </div>
-    <footer class="audio-player-container" id="audioPlayerContainer">
-      <audio id="audio" controls style="display: none"></audio>
-      <div class="audio-info-container">
-        <div class="audio-image-container">
-          <img src="" />
-        </div>
-        <div class="audio-details">
-          <span class="Artist-name" id="Artist-name"></span>
-          <span class="Song-name" id="current-song-name">Artist Name</span>
-        </div>
-        <img
-          class="add-icon"
-          src="https://firebasestorage.googleapis.com/v0/b/spotify-c3754.appspot.com/o/images%2Fadd-icon.png?alt=media&token=30d583f5-8a50-4ca3-a1f5-d67dd062d106"
-        />
+    <div class="wrapper">
+      <div class="audio-playing">
+        <div class="controls">
+          <div class="song-control-container toggle-container">
+            <span class="autoplay" id="autoplay">
+              <div class="description">Autoplay</div>
+              <input class="switch" type="checkbox" id="switch" checked />
+            </span>
+          </div>
+          <div class="song-control-container">
+            <span class="previous-song" id="previous-music">
+              <div class="description">Previous</div>
+              <i class="fa-solid fa-backward-step"></i>
+            </span>
+          </div>
+          <div class="song-control-container">
+            <span class="play-music" id="play">
+              <div class="description">Play</div>
+              <i class="fa-solid fa-circle-play"></i>
+            </span>
 
-        <div class="adding-features" id="adding-features">
-          <div class="adding-to-playlist feature" id="add-to-playlist">
-            <i class="fa-solid fa-list-ul"></i>Add To your list
+            <span class="pause-music" id="pause">
+              <div class="description">Pause</div>
+              <i class="fa-solid fa-pause"></i>
+            </span>
           </div>
-          <div class="adding-to-favorites feature" id="add-to-favorites">
-            <i class="fa-regular fa-heart"></i>Add To Favorites
+          <div class="song-control-container">
+            <span class="next-song" id="next-music">
+              <div class="description">Next</div>
+              <i class="fa-solid fa-forward-step"></i>
+            </span>
           </div>
-          <div class="playlist-features" id="playlist-features">
-            <div class="create-playlist list" id="create-playlist">
-              <i class="fa-solid fa-plus"></i>Create Playlist
-            </div>
-            <div class="create-playlist list">asaz</div>
-            <div class="create-playlist list">asa</div>
-          </div>
-        </div>
-      </div>
-      <div class="wrapper">
-        <div class="audio-playing">
-          <div class="controls">
-            <div class="song-control-container toggle-container">
-              <span class="autoplay" id="autoplay">
-                <description class="description">Autoplay</description>
-                <input class="switch" type="checkbox" id="switch" checked />
-              </span>
-            </div>
-            <div class="song-control-container">
-              <span class="previous-song" id="previous-music">
-                <description class="description">Previous</description>
-                <i class="fa-solid fa-backward-step"></i>
-              </span>
-            </div>
-            <div class="song-control-container">
-              <span class="play-music" id="play">
-                <description class="description">Play</description>
-                <i class="fa-solid fa-circle-play"></i>
-              </span>
-
-              <span class="pause-music" id="pause">
-                <description class="description">Pause</description>
-                <i class="fa-solid fa-pause"></i>
-              </span>
-            </div>
-            <div class="song-control-container">
-              <span class="next-song" id="next-music">
-                <description class="description">Next</description>
-                <i class="fa-solid fa-forward-step"></i>
-              </span>
-            </div>
-            <div class="song-control-container loop-song">
-              <span class="repeat-song" id="repeat-music">
-                <description class="description">Repeat</description>
-                <i class="fa-solid fa-repeat"></i>
-              </span>
-            </div>
-          </div>
-          <div class="progress-container">
-            <span id="current-time">0:00</span>
-            <input
-              class="progress-bar"
-              type="range"
-              id="progress-bar"
-              min="0"
-              max="100"
-              value="0"
-            />
-            <span id="duration">0:00</span>
+          <div class="song-control-container loop-song">
+            <span class="repeat-song" id="repeat-music">
+              <div class="description">Repeat</div>
+              <i class="fa-solid fa-repeat"></i>
+            </span>
           </div>
         </div>
+        <div class="progress-container">
+          <span id="current-time">0:00</span>
+          <input class="progress-bar" type="range" id="progress-bar" min="0" max="100" value="0" />
+          <span id="duration">0:00</span>
+        </div>
       </div>
-      <div class="exit-audio-player" id="exit-audio-player">
-        <i class="fa-regular fa-circle-xmark"></i>
-      </div>
-    </footer>
-    <div class="pop-up" id="favs-pop-up"></div>
     </div>
+    <div class="exit-audio-player" id="exit-audio-player">
+      <i class="fa-regular fa-circle-xmark"></i>
+    </div>
+  </footer>
+  <footer class="footer-bar">
+    <i class="fa-solid fa-house" id="footer-home-page-icon"></i>
+    <i class="fa-solid fa-list-ul" ></i>
+    <i class="fa-solid fa-heart" id="footer-favoritesContainer"></i>
+    <i class="fa-solid fa-right-from-bracket" aria-hidden="true" id="logout-btn"></i>
+  </footer>
+  <div class="pop-up" id="favs-pop-up"></div>
+  </div>
 
-    <script src="./scripts/audio-player.js" type="module"></script>
-    <script src="./scripts/shared/change-path.js" type="module"></script>
-    <script src="./scripts/home.js" type="module"></script>
-    <script type="module" src="./scripts/shared/sidebar.js"></script>
-    <script type="module" src="./scripts/shared/header.js"></script>
-    <script type="module"src="./scripts/favorites.js"></script>
-  </body>
+
+  <script src="./scripts/audio-player.js" type="module"></script>
+  <script src="./scripts/shared/change-path.js" type="module"></script>
+  <script src="./scripts/home.js" type="module"></script>
+  <script type="module" src="./scripts/shared/sidebar.js"></script>
+  <script type="module" src="./scripts/shared/header.js"></script>
+  <script type="module" src="./scripts/favorites.js"></script>
+  <script type="module" src="./scripts/shared/footer-bar.js"></script>
+</body>
+
 </html>

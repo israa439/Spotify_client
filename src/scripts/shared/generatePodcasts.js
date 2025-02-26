@@ -1,4 +1,8 @@
+import { isFav } from "./isFavorite.js";
+let description = "Add to favorites";
+let favHtml = `<i class="fa-regular fa-heart fa-xl" style="color: #978686;"></i>`;
 async function displayPodcast(podcast, podcastIndex) {
+  await isFavoriteSong(podcast);
   let songHTML = `
 <div class="song" data-song-index="${podcastIndex}">
   <div class="song-left-side">
@@ -15,11 +19,14 @@ async function displayPodcast(podcast, podcastIndex) {
     <span class="song-plays">${generateRandomNumber()}</span>
   </div>
   <div class="song-right-side">
-    <i class="fa-regular fa-heart add-to-favorites"></i>
+        <div class="description" id="fav-description">${description}</div>
+        <div class="favs-icon" id="fav-icon">
+          ${favHtml}
+        </div>
     <span class="song-duration"> ${await getSongDuration(
       podcast.podcast_url
     )} </span>
-    <i class="fa-solid fa-ellipsis-h song-options" data-song-id="${podcast.podcast_id}"></i>
+   
   </div>
 </div>
     `;
@@ -43,6 +50,14 @@ async function getSongDuration(url) {
     return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   } catch (error) {
     console.error("Error loading audio file:", error);
+  }
+}
+async function isFavoriteSong(Song) {
+  let res = await isFav(Song.podcast_id,undefined,Song.podcast_url);
+
+  if (res) {
+    description = "Remove from favorites";
+    favHtml = `<i class="fa-solid fa-heart fa-xl" style="color: #dd0e0e;"></i>`;
   }
 }
 

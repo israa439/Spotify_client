@@ -5,8 +5,7 @@ let logoutModal = document.getElementById("logoutModal");
 let logoutNo = document.getElementById("logout-no");
 let logoutYes = document.getElementById("logout-yes");
 let sideBar = document.getElementById("sideBar");
-let footer = document.getElementById("footerBar");
-let favsContainer = document.getElementById("favoritesContainer");
+let logoutBtn = document.getElementById("logout-btn");
 
 let isResizing = false;
 let startX = 0;
@@ -51,7 +50,9 @@ sideBar.addEventListener("mouseup", () => {
   isResizing = false;
   sideBar.classList.remove("resizing");
 });
-
+logoutBtn.addEventListener("click", () => {
+  logoutModal.style.display = "flex";
+});
 logoutContainer.addEventListener("click", async () => {
   logoutModal.style.display = "flex";
 });
@@ -60,7 +61,7 @@ logoutNo.addEventListener("click", () => {
   logoutModal.style.display = "none";
 });
 logoutYes.addEventListener("click", async () => {
-  const response = fetch("http://localhost:5000/logout", {
+  const response = fetch("https://spotify-web-app.azurewebsites.net/logout", {
     method: "POST",
     credentials: "include",
     headers: {
@@ -69,6 +70,7 @@ logoutYes.addEventListener("click", async () => {
   });
   let data = await response;
   console.log(data);
+  localStorage.clear();
   navigateTo("/home");
   logoutModal.style.display = "none";
   await sendRequest();

@@ -1,4 +1,7 @@
-
+.varied-main {
+  /* width: 100%; */
+  min-height: 100vh;
+}
 /* IMAGE CONTAINER */
 .image-container {
   width: 100%;
@@ -18,7 +21,7 @@
   flex-direction: column;
   position: absolute;
   top: 5%;
-  left: 10px;
+  left: 15px;
 }
 /* ARTIST NAME */
 .artist-name-header {
@@ -55,4 +58,36 @@
 /* POPULAR SONGS */
 .popular-songs {
   margin: 5px 0px 25px 15px;
+}
+/* CONTROLS DESCRIPTION  */
+.song-right-side .description {
+  background-color: rgba(151, 134, 134, 0.454);
+  position: absolute;
+  font-size: 1rem;
+  color: #fff;
+  padding: 5px 10px;
+  top: -45px;
+  left: -100px;
+  opacity: 0;
+  transform: translateY(10px);
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+.song-right-side:hover .description {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+.favs-icon {
+  opacity: 0;
+  cursor: pointer;
+}
+.song:hover .favs-icon {
+  opacity: 1;
+}
+.song-right-side {
+  position: relative;
+}
+@media (max-width: 1066px) {
 }

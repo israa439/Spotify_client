@@ -24,14 +24,17 @@ signinForm.addEventListener("submit", async function (event) {
   try {
     signinspan.innerHTML = " ";
 
-    const response = await fetch("http://localhost:5000/signin", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetch(
+      "https://spotify-web-app.azurewebsites.net/signin",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
     let data = await response.text();
     console.log(data);
     if (response.status === 400) {
@@ -42,6 +45,7 @@ signinForm.addEventListener("submit", async function (event) {
       signinspan.innerHTML = "your email or password is incorrect";
       return;
     }
+    // return;
     window.location.href = "index.html";
   } catch (error) {
     alert("Error signing in. Please try again.");
@@ -64,15 +68,18 @@ signupForm.addEventListener("submit", async function (event) {
   }
   try {
     signupspan.innerHTML = "";
-    let sendEmailresponse = await fetch("http://localhost:5000/sendEmail", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-      credentials: "include",
-    });
+    let sendEmailresponse = await fetch(
+      "https://spotify-web-app.azurewebsites.net/sendEmail",
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      }
+    );
     if (sendEmailresponse.status === 400) {
       signupspan.innerHTML = "Email already in use";
       return;
@@ -96,14 +103,17 @@ signupForm.addEventListener("submit", async function (event) {
           email: document.getElementById("sign-up-email").value,
           code: document.getElementById("verifier-input").value,
         };
-        let verifyResponse = await fetch("http://localhost:5000/verifyEmail", {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(Data),
-        });
+        let verifyResponse = await fetch(
+          "https://spotify-web-app.azurewebsites.net/verifyEmail",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(Data),
+          }
+        );
         if (verifyResponse.status === 500) {
           alert("Error verifying code. Please try again.");
           return;
@@ -123,14 +133,17 @@ signupForm.addEventListener("submit", async function (event) {
         if (verifyResponse.ok) {
           document.getElementById("verifier-error").style.color = "green";
           document.getElementById("verifier-error").innerHTML = "Code Verified";
-          const signupResponse = await fetch("http://localhost:5000/signup", {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-          });
+          const signupResponse = await fetch(
+            "https://spotify-web-app.azurewebsites.net/signup",
+            {
+              method: "POST",
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            }
+          );
           if (!signupResponse.ok) {
             alert("Error signing up. Please try again.");
           }

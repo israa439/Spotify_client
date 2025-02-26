@@ -66,6 +66,33 @@
 .log-in:hover {
   cursor: pointer;
   background-color: rgb(240, 238, 238);
-  width: 101px;
-  height: 51px;
+
+  transform: scale(1.05);
+}
+@media (max-width: 700px) {
+  .sign-up,
+  .log-in {
+    width: 80px;
+    height: 40px;
+  }
+}
+@media (max-width: 700px) {
+  .user-info.active {
+    width: 45px;
+    height: 45px;
+  }
+}
+@media (max-width: 500px) {
+  .sign-up,
+  .log-in {
+    width: 70px;
+    height: 35px;
+  }
+}
+@media (max-width: 450px) {
+  .sign-up,
+  .log-in {
+    width: 70px;
+    height: 35px;
+  }
 }

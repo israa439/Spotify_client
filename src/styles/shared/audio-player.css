@@ -75,18 +75,21 @@
   height: 2rem;
 }
 /* CONTROLS DESCRIPTION  */
-.description {
+.song-control-container .description,
+.audio-info-container .description {
   background-color: rgba(151, 134, 134, 0.454);
   position: absolute;
   font-size: 1rem;
   color: #fff;
   padding: 5px 10px;
   top: -45px;
-  left: -30px;
+  right: -20px;
   opacity: 0;
-  transform: translateY(10px);
+  width: auto;
   visibility: hidden;
   transition: opacity 0.3s ease, transform 0.3s ease;
+
+  white-space: nowrap;
 }
 .song-control-container:hover .description {
   visibility: visible;
@@ -251,7 +254,8 @@
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.5);
 }
-.audio-info-container .add-icon {
+/* FAV ICON CONTAINER */
+.audio-info-container .favorites-container {
   position: absolute;
   right: 0px;
   top: 0px;
@@ -259,67 +263,11 @@
   height: 20px;
   cursor: pointer;
 }
-/* ADDING FEATURES */
-.adding-features {
-  position: absolute;
-  width: 170px;
-  height: 70px;
-  background-color: rgba(61, 51, 51, 0.963);
-  top: -65px;
-  right: -130px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  display: none;
-}
-.adding-features .feature,
-.playlist-features .list {
-  width: 100%;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-  cursor: pointer;
-  gap: 10px;
-}
-.adding-to-playlist:hover,
-.playlist-features > :first-child:hover {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.adding-to-favorites:hover,
-.playlist-features > :last-child:hover {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-/* PLAYLIST FEATURES */
-.playlist-features {
-  position: absolute;
-  width: 170px;
-  background-color: rgba(61, 51, 51, 0.963);
-  top: -10px;
-  right: -100%;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  display: none;
-  z-index: 10;
-}
 
-.audio-info-container .add-icon:hover ~ .adding-features,
-.audio-info-container .adding-features:hover,
-.audio-info-container
-  .adding-features
-  .adding-to-playlist:hover
-  ~ .playlist-features,
-.audio-info-container .adding-features .playlist-features:hover {
-  display: block;
-}
-.adding-features .feature:hover,
-.playlist-features .list:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.favorites-container:hover .description {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* EXIT AUDIO PLAYER  */
@@ -334,45 +282,33 @@
 .exit-audio-player i {
   cursor: pointer;
 }
-/* ADD TO FAVS POP UP */
-.pop-up {
- position: absolute;
-  width: 200px;
-  height: 50px;
-  background-color: rgba(61, 51, 51, 0.963);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  display: none;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.pop-up.active {
-  display: flex;
-  animation: popUpAnimation 3.7s ease forwards;
-}
+
 /* MEDIA QUERIES */
 @media (max-width: 600px) {
   .audio-player-container {
     margin-bottom: 3px;
-    background-color: rgba(61, 51, 51, 0.963);
+    /* background-color: rgba(61, 51, 51, 0.963); */
   }
-  .audio-info-container {
+
+  .audio-image-container {
     display: none;
   }
+  .audio-player-container .audio-details {
+    display: none;
+  }
+  .audio-info-container .favorites-container {
+    left: 0;
+  }
+  .audio-info-container {
+    min-width: 0;
+    width: fit-content;
+  }
+  .favorites-container .description {
+    right: -100px;
+  }
 }
-@keyframes popUpAnimation {
-  0% {
-    top: -100px;
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    top: 10%;
-    opacity: 1;
-    transform: translate(-50%, -50%);
+@media (max-width: 450px) {
+  .audio-playing {
+    min-width: 300px;
   }
 }

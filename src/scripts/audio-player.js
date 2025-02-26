@@ -1,6 +1,10 @@
 import { getSongs } from "./shared/ActiveAlbum.js";
 import { getpodcasts } from "./shared/getPodcasts.js";
 import { addToFav } from "./shared/addToFav.js";
+import { removeFromFav } from "./shared/removeFromFav.js";
+import { getFavSongs } from "./shared/getFavSongs.js";
+import { getFavPodcasts } from "./shared/getFavPodcasts.js";
+import { isFav } from "./shared/isFavorite.js";
 let updateInterval;
 let songs;
 let songUrl = localStorage.getItem("currentSongUrl");
@@ -19,17 +23,41 @@ const pauseButton = document.getElementById("pause");
 const progressBar = document.getElementById("progress-bar");
 const currentTimeElement = document.getElementById("current-time");
 const durationElement = document.getElementById("duration");
-const addSong = document.getElementById("add-to-favorites");
-// ADD SONG FUNCTIONALITY
-addSong.addEventListener("click", async () => {
-  let res = await addToFav();
-  const pop_up = document.getElementById("favs-pop-up");
+const favDescription = document.getElementById("fav-description");
+const favIcon = document.getElementById("fav-icon");
 
-  if (res == true) {
-    pop_up.innerHTML = `song added to favorites`;
+// ADD SONG FUNCTIONALITY
+favIcon.addEventListener("click", async () => {
+  const pop_up = document.getElementById("favs-pop-up");
+  let favSongs = await isFav();
+  if (favSongs === null) {
+    console.log("You should sign in first.");
+    pop_up.innerHTML = `You should sign in first.`;
+    
+  } else if (favSongs === undefined) {
+    console.log("ADDING SONG TO FAVORITES");
+    let res = await addToFav();
+    if (res == false) {
+      alert("song already added to favorites");
+    }
+    pop_up.innerHTML = `Song added to favorites`;
+    favDescription.innerHTML = "Remove from favorites";
+    favIcon.innerHTML = `<i class="fa-solid fa-heart fa-xl" style="color: #dd0e0e;"></i>`;
+    getFavPodcasts();
+    getFavSongs();
   } else {
-    pop_up.innerHTML = `song already in favorites`;
+    let res = await removeFromFav();
+    if (res == false) {
+      alert("error adding song to favorites");
+    }
+
+    pop_up.innerHTML = `Song removed from favorites`;
+    favDescription.innerHTML = "Add to favorites";
+    favIcon.innerHTML = `<i class="fa-regular fa-heart fa-xl" style="color: #978686;"></i>`;
+    getFavPodcasts();
+    getFavSongs();
   }
+
   pop_up.classList.add("active");
   setTimeout(() => {
     pop_up.classList.remove("active");
@@ -39,8 +67,25 @@ addSong.addEventListener("click", async () => {
 window.addEventListener("beforeunload", () => {
   localStorage.setItem("isPlaying", JSON.stringify(false));
 });
+// INDICATE IF SONG IS FAVORITE
+async function isFavoriteSong() {
+  let favSongs = await isFav();
+
+  if (favSongs === null) {
+    favDescription.innerHTML = "Add to favorites";
+    favIcon.innerHTML = `<i class="fa-regular fa-heart fa-xl" style="color: #978686;"></i>`;
+  } else if (favSongs === undefined) {
+    favDescription.innerHTML = "Add to favorites";
+    favIcon.innerHTML = `<i class="fa-regular fa-heart fa-xl" style="color: #978686;"></i>`;
+  } else {
+    favDescription.innerHTML = "Remove from favorites";
+    favIcon.innerHTML = `<i class="fa-solid fa-heart fa-xl" style="color: #dd0e0e;"></i>`;
+  }
+}
+
 // PLAY MUSIC
 function playMusic(songUrl) {
+  isFavoriteSong();
   localStorage.setItem("isPlaying", JSON.stringify(true));
   audioPlayer.load();
   audioPlayer.play();
@@ -52,7 +97,7 @@ function playMusic(songUrl) {
 }
 // GET IMAGE OF CURRENT SONG
 function getImage(songUrl) {
-  let song = songs.find((song) => song.song_url === songUrl);
+  let song = songs.find((s) => String(s.song_url) === String(songUrl));
   return song.song_image;
 }
 // GET SONG NAME OF CURRENT SONG
@@ -60,16 +105,7 @@ function getSongName(songUrl) {
   let song = songs.find((song) => song.song_url === songUrl);
   return song.song_name;
 }
-// GET IMAGE OF CURRENT PODCAST
-function getPodcastImage(songUrl) {
-  const index = songs.findIndex((song) => song.song_url === songUrl);
-  return songs[index].song_image;
-}
-// GET SONG NAME OF CURRENT PODCAST
-function getPodcastName(songUrl) {
-  const index = songs.findIndex((song) => song.song_url === songUrl);
-  return songs[index].song_name;
-}
+
 // PLAY NEXT MUSIC
 function playNextMusic() {
   let songID = localStorage.getItem("songID");
@@ -249,18 +285,34 @@ audio.addEventListener("ended", () => {
 
 async function createAudioPlayer() {
   clearInterval(updateInterval);
-  let isPodcast = localStorage.getItem("ActiveAlbum")?.startsWith("1");
-  songs = isPodcast ? await getpodcasts() : await getSongs();
-  songUrl = localStorage.getItem("currentSongUrl");
+  let activeAlbum = localStorage.getItem("ActiveAlbum");
+  let isPodcast = false;
+
+  if (activeAlbum !== "null") {
+    isPodcast = localStorage.getItem("ActiveAlbum")?.startsWith("1");
+    songs = isPodcast ? await getpodcasts() : await getSongs();
+  } else {
+    let Favsongs = JSON.parse(localStorage.getItem("favSongs"));
+    let Favpodcasts = JSON.parse(localStorage.getItem("favPodcasts"));
+    let renamedPodcasts = Favpodcasts.map((podcast) => ({
+      song_id: podcast.podcast_id,
+      song_image: podcast.podcast_image,
+      song_url: podcast.podcast_url,
+      song_name: podcast.podcast_name,
+    }));
+
+    songs = Favsongs.concat(renamedPodcasts);
+  }
+  isFavoriteSong();
   home.style.display = "flex";
   let isPlaying = JSON.parse(localStorage.getItem("isPlaying"));
-  let podcastid = localStorage.getItem("ActiveAlbum");
-  isPodcast = podcastid.startsWith("1");
+  songUrl = localStorage.getItem("currentSongUrl");
 
   nextMusic.disabled = isPodcast;
   previousMusic.disabled = isPodcast;
   autoplayer.disabled = isPodcast;
   autoplayer.checked = !isPodcast;
+
   if (isPodcast) {
     autoplayer.classList.add("not-Active");
     nextMusic.querySelector("i").style.color = "rgba(197, 192, 192, 0.731)";
@@ -270,23 +322,15 @@ async function createAudioPlayer() {
     nextMusic.querySelector("i").style.color = "#fff";
     previousMusic.querySelector("i").style.color = "#fff";
   }
+
   nextMusic.style.cursor = isPodcast ? "not-allowed" : "pointer";
   previousMusic.style.cursor = isPodcast ? "not-allowed" : "pointer";
   autoplayer.style.cursor = isPodcast ? "not-allowed" : "pointer";
 
   audioPlayer.src = songUrl;
-  audioImage.src = isPodcast ? getPodcastImage(songUrl) : getImage(songUrl);
-  songName.innerHTML = isPodcast
-    ? getPodcastName(songUrl)
-    : getSongName(songUrl);
-  artistName.innerHTML = isPodcast
-    ? " "
-    : localStorage.getItem("ActiveArtistName");
-
-  audioPlayer.src = songUrl;
   audioImage.src = getImage(songUrl);
   songName.innerHTML = getSongName(songUrl);
-  artistName.innerHTML = localStorage.getItem("ActiveArtistName");
+  artistName.innerHTML = localStorage.getItem("ActiveArtistName") || "";
 
   if (isPlaying) {
     audioPlayer.play();

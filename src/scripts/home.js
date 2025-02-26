@@ -20,6 +20,8 @@ async function homePage() {
 </div>
   `;
   let homeMain = document.getElementById("variedMain");
+  homeMain.style.height = "auto";
+  homeMain.style.minHeight = "initial";
 
   homeMain.innerHTML = mainhtml;
 
@@ -35,13 +37,16 @@ async function homePage() {
   // FUNCTION TO GET THE ALBUMS FROM BACKEND
   async function getAlbums() {
     try {
-      const response = await fetch("http://localhost:5000/getAlbums", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://spotify-web-app.azurewebsites.net/getAlbums",
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       return await response.json();
     } catch (err) {
@@ -51,13 +56,16 @@ async function homePage() {
   // FUNCTION TO GET THE PODCASTS FROM BACKEND
   async function getPodcasts() {
     try {
-      const response = await fetch("http://localhost:5000/getPodcasts", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://spotify-web-app.azurewebsites.net/getPodcasts",
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       return await response.json();
     } catch (err) {
       console.log(err);
@@ -150,7 +158,7 @@ async function homePage() {
         index = index - 6;
       }
       let albumId = albumCard.getAttribute("data-album-id");
-      localStorage.setItem("ActiveArtistName",Albums[index].artist_name)
+      localStorage.setItem("ActiveArtistName", Albums[index].artist_name);
       localStorage.setItem("ActiveAlbum", albumId);
       localStorage.setItem("songID", Albums[index].songs[0].song_id);
       localStorage.setItem("podcastID", undefined);
@@ -249,11 +257,8 @@ async function homePage() {
       localStorage.setItem("podcastImage", podcasts[index].song_image);
 
       await createAudioPlayer();
-    
-
     }
   });
-
 
   // FUNCTION TO MOVE THE SLIDER TO THE LEFT
   function moveLeft(cardWidth, scrollAmount, container, slidesAmount, gap) {

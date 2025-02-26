@@ -2,10 +2,16 @@ import { homePage } from "../home.js";
 import { songsPage } from "../songs.js";
 import { favouritesPage } from "../favorites.js";
 
-const homeIcon = document.getElementById("home-page-icon");
-const homeHeader = document.getElementById("home-page-subtitle");
-const favoritesIcon = document.getElementById("favoritesContainer");
+const homeIcon =
+  document.getElementById("home-page-icon") ||
+  document.getElementById("footer-home-page-icon");
 
+const homeHeader = document.getElementById("home-page-subtitle");
+const favoritesIcon =
+  document.getElementById("favoritesContainer") ||
+  document.getElementById("footer-favoritesContainer");
+
+  
 window.addEventListener("DOMContentLoaded", () => {
   router(window.location.pathname);
 });

@@ -1,12 +1,17 @@
-import { createAudioPlayer } from "./audio-player.js";
+import { removeFromFav } from "./shared/removeFromFav.js";
 import { getSongs } from "./shared/currentAlbum.js";
 import { getSongs as activeSongs } from "./shared/ActiveAlbum.js";
 import { displaySong } from "./shared/generatingSong.js";
+import { audioPlaying } from "./shared/playAudio.js";
+import { isFav } from "./shared/isFavorite.js";
+import { getFavSongs } from "./shared/getFavSongs.js";
+import { addToFav } from "./shared/addToFav.js";
 
 async function songsPage() {
   let displayedSongs = await getSongs();
   let playedSongs = await activeSongs();
   let artist_name = localStorage.getItem("ViewedArtistName");
+
   let containerHTML = `
 <div class="image-container">
   <img src="${displayedSongs[0].song_image}"/>
@@ -24,6 +29,7 @@ async function songsPage() {
 `;
 
   let container = document.getElementById("variedMain");
+  container.style.minHeight = "100vh";
   container.innerHTML = containerHTML;
   let songsContainer = document.querySelector(".songs-container");
   for (let index = 0; index < displayedSongs.length; index++) {
@@ -48,30 +54,62 @@ async function songsPage() {
 
       playedSongs = await activeSongs();
 
-      localStorage.setItem("currentSongUrl", playedSongs[index - 1].song_url);
-      localStorage.setItem("songID", playedSongs[index - 1].song_id);
-      localStorage.setItem("podcastID", undefined);
-      localStorage.setItem("currentTime", 0);
-      localStorage.setItem("isPlaying", JSON.stringify(true));
-      if (index == 1) {
-        localStorage.setItem(
-          "previousSongUrl",
-          playedSongs[index - 1].song_url
-        );
-        console.log(playedSongs[index - 1].song_url);
+      audioPlaying(playedSongs, index);
+    } else if (event.target.classList.contains("heart-icon")) {
+
+      let songCard = event.target.closest(".song");
+      let index = songCard.getAttribute("data-song-index");
+      let songUrl = displayedSongs[index - 1].song_url;
+      let songID = displayedSongs[index - 1].song_id;
+
+      const pop_up = document.getElementById("favs-pop-up");
+      let favSongs = await isFav(songID, songUrl, undefined);
+      let favDescription = songCard.querySelector(".description");
+      let favIcon = songCard.querySelector(".favs-icon");
+
+      if (favSongs === null) {
+         pop_up.innerHTML = `You should sign in first.`;
+    
+      } else if (favSongs === undefined) {
+        console.log("ADDING SONG TO FAVORITES");
+        let res = await addToFav(songID, undefined);
+        if (res == false) {
+          alert("song already added to favorites");
+          return;
+        }
+        pop_up.innerHTML = `Song added to favorites`;
+        favDescription.innerHTML = "Remove from favorites";
+        favIcon.innerHTML = `<i class="fa-solid fa-heart fa-xl" style="color: #dd0e0e;"></i>`;
+        // getFavPodcasts();
+        await getFavSongs();
       } else {
-        localStorage.setItem(
-          "previousSongUrl",
-          playedSongs[index - 2].song_url
-        );
-      }
-      if (index == playedSongs.length) {
-        localStorage.setItem("nextSongUrl", undefined);
-      } else {
-        localStorage.setItem("nextSongUrl", playedSongs[index].song_url);
+        let songCard = event.target.closest(".song");
+        let index = songCard.getAttribute("data-song-index");
+        let songUrl = displayedSongs[index - 1].song_url;
+        let songID = displayedSongs[index - 1].song_id;
+
+        const pop_up = document.getElementById("favs-pop-up");
+        let favSongs = await isFav(songID, songUrl, undefined);
+        let favDescription = songCard.querySelector(".description");
+        let favIcon = songCard.querySelector(".favs-icon");
+
+        let res = await removeFromFav(songID, undefined);
+        if (res == false) {
+          alert("error adding song to favorites");
+          return;
+        }
+
+        pop_up.innerHTML = `Song removed from favorites`;
+        favDescription.innerHTML = "Add to favorites";
+        favIcon.innerHTML = `<i class="fa-regular fa-heart fa-xl" style="color: #978686;"></i>`;
+        // getFavPodcasts();
+        getFavSongs();
       }
 
-      await createAudioPlayer();
+      pop_up.classList.add("active");
+      setTimeout(() => {
+        pop_up.classList.remove("active");
+      }, 5000);
     }
   });
 }

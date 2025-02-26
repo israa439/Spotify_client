@@ -4,6 +4,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+.varied-main {
+  min-height: auto;
+}
 /* HEADER OF THE ALBUMS AND PODCASTS */
 .wrapper-header {
   padding: 20px 20px 70px;
@@ -164,8 +167,6 @@
   background-color: transparent;
 }
 
-
-
 @media (max-width: 600px) {
   .songs-player {
     visibility: visible;
@@ -176,10 +177,21 @@
     min-width: 180px;
     min-height: 230px;
   }
+  .podcasts-song-player {
+    font-size: 30px;
+    bottom: 23%;
+  }
 }
 @media (max-width: 429px) {
   .album-card {
     min-width: 130px;
     min-height: 130px;
+  }
+  .fa-arrow-left,
+  .fa-arrow-right {
+    font-size: 30px;
+  }
+  .songs-player {
+    font-size: 30px;
   }
 }

@@ -1,5 +1,4 @@
-// import { getSongs } from "./getSongs.js";
-async function addToFav(songid, podcastid) {
+async function removeFromFav(songid, podcastid) {
   let songID = songid ?? localStorage.getItem("songID");
   let podcastID = podcastid ?? localStorage.getItem("podcastID");
   if (songID != "undefined") {
@@ -8,9 +7,9 @@ async function addToFav(songid, podcastid) {
         song_id: songID,
       };
       const response = await fetch(
-        `https://spotify-web-app.azurewebsites.net/addFavoriteSong`,
+        `https://spotify-web-app.azurewebsites.net/deleteFavSong`,
         {
-          method: "POST",
+          method: "DELETE",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
@@ -33,9 +32,9 @@ async function addToFav(songid, podcastid) {
         podcast_id: podcastID,
       };
       const response = await fetch(
-        `https://spotify-web-app.azurewebsites.net/addFavoritePodcast`,
+        `https://spotify-web-app.azurewebsites.net/deleteFavPodcast`,
         {
-          method: "POST",
+          method: "DELETE",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
@@ -55,4 +54,4 @@ async function addToFav(songid, podcastid) {
   }
 }
 
-export { addToFav };
+export { removeFromFav };

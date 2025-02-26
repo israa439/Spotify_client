@@ -1,3 +1,4 @@
+import { IsAuth } from "./isAuthenticated.js";
 let headerHTML = `
 <div class="create-account" id="createAccount">
   <a href="account.html"><button class="sign-up">Sign Up</button></a>
@@ -17,15 +18,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 export async function sendRequest() {
   try {
-    const response = await fetch("http://localhost:5000/userInfo", {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await IsAuth();
     let data = await response.text();
     if (response.status === 400) {
+      
       logoutHTML.innerHTML = ``;
       createAccountContainer.classList.add("active");
       userInfoAccount.classList.remove("active");

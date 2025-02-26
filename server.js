@@ -11,7 +11,7 @@ const app = express();
 app.use(express.static(join(__dirname, "src")));
 
 // Serve index.html for the root route or other specific routes
-app.get(["/", "/home", "/songs"], (req, res) => {
+app.get(["/", "/home", "/songs", "/favorites"], (req, res) => {
   res.sendFile(join(__dirname, "src", "index.html"));
 });
 
